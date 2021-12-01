@@ -1,0 +1,28 @@
+/* .container {
+  max-width: 960px;
+} */
+.btnLimpar{
+  color: #F25C27;
+  background-color: #f25d2744;
+  font-family: "Poppins";
+  padding: 10px 13px;
+}
+.btnEnviar{
+  color: white;
+  background-color: #198754 ;
+  font-family: "Poppins";
+  padding: 10px 13px;
+}
+
+.row{
+  --bs-gutter-x: 0 !important;
+}
+html{
+  height: 100vh;
+}
+body{
+  height: 100%;
+}
+h4{
+  font-family: "Montserrat";
+}
