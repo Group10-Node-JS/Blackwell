@@ -63,8 +63,41 @@
                                     <th class="py-3">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody class=" bg-white">
-                                <tr class="align-middle">
+                            <tbody class=" bg-white" id="medicosDom">
+                                {{!-- {{#each medicos}}
+                                
+                                <tr class="medicoItem align-middle">
+                                    <td class="py-3">
+                                        <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
+                                        {{name}}
+                                    </td>
+                                    <td>
+                                        {{data}}
+                                    </td>
+                                    <td>
+                                        <span class="especialidade">{{especialidade}}</span>
+                                    </td>
+                                    <td>
+                                        {{CRM}}
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-switch d-flex justify-content-center">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                        </div> 
+                                    </td>
+                                    <td class="acoes">
+                                        <a href="">
+                                            <img src="../img/edit.svg" alt="">
+                                        </a>
+                                        <a href="">
+                                            <img src="../img/delete.svg" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                             
+                                {{/each}} --}}
+
+                                {{!-- <tr class="align-middle">
                                     <td class="py-3">
                                         <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
                                         Eleanor Pena
@@ -183,53 +216,38 @@
                                             <img src="../img/delete.svg" alt="">
                                         </a>
                                     </td>
-                                </tr>
-                                <tr class="align-middle">
-                                    <td class="py-3">
-                                        <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
-                                        Eleanor Pena
-                                    </td>
-                                    <td>
-                                        18.05.2020
-                                    </td>
-                                    <td>
-                                        <span class="especialidade">Clínico Geral</span>
-                                        <span class="especialidade">Cirurgia geral</span>
-                                        <span class="especialidade">Pediatria</span>
-                                    </td>
-                                    <td>
-                                        2021-CE
-                                    </td>
-                                    <td>
-                                        <div class="form-check form-switch d-flex justify-content-center">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                                        </div> 
-                                    </td>
-                                    <td class="acoes">
-                                        <a href="">
-                                            <img src="../img/edit.svg" alt="">
-                                        </a>
-                                        <a href="">
-                                            <img src="../img/delete.svg" alt="">
-                                        </a>
-                                    </td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>
 
                     <nav class="mt-4">
-                        <ul class="pagination justify-content-end">
-                        <li class="page-item disabled primeiro-da-fila" id="voltarTabela">
-                            <a class="page-link text-white">-</a>
-                        </li>
-                        <li class="page-item lista-numero"><a class="page-link text-dark" href="#">1</a></li>
-                        <li class="page-item lista-numero"><a class="page-link text-dark" href="#">2</a></li>
-                        <li class="page-item lista-numero"><a class="page-link text-dark" href="#">3</a></li>
-                        <li class="page-item lista-numero"><a class="page-link text-dark" href="#">4</a></li>
-                        <li class="page-item" id="avancarTabela">
-                            <a class="page-link text-white" href="#">+</a>
-                        </li>
+                        <ul class="pagination justify-content-end" id="paginationDoc">   
+                            {{!-- <li class="page-item disabled primeiro-da-fila" id="voltarTabela">
+                                <a class="page-link text-white">-</a>
+                            </li>
+                            <li class="page-item lista-numero"><a class="page-link text-dark" href="#">1</a></li>
+                            <li class="page-item lista-numero"><a class="page-link text-dark" href="#">2</a></li>
+                            <li class="page-item lista-numero"><a class="page-link text-dark" href="#">3</a></li>
+                            <li class="page-item lista-numero"><a class="page-link text-dark" href="#">4</a></li>
+                            <li class="page-item" id="avancarTabela">
+                                <a class="page-link text-white" href="#">+</a>
+                            </li>  --}}
+                            <li class="page-item" id="voltarTabela">
+                                <a class="page-link text-white" id="primeiroMedico" href="#">&#171;</a>
+                            </li>
+                            <li class="page-item" id="voltarTabela">
+                                <a class="page-link text-white" id="medicoAnterior" href="#">&lt;</a>
+                            </li>
+
+                            <li class="page-item lista-numero"><a class="page-link text-dark" class="medicoLista" href="#">1</a></li>
+
+                            <li class="page-item" id="avancarTabela">
+                                <a class="page-link text-white" id="medicoPosterior" href="#">&gt;</a>
+                            </li>
+                            <li class="page-item" id="avancarTabela">
+                                <a class="page-link text-white" id="ultimoMedico" href="#">&#187;</a>
+                            </li>  
                         </ul>
                     </nav>
                   </section>
@@ -444,4 +462,176 @@
 
         {{> footer }}
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        const medicoDados = JSON.parse('{{{medicosDados}}}')
+
+        /*
+        function createItem(nome, data, especialidade, CRM) {
+            const item = `
+            <tr class="medicoItem align-middle">
+                <td class="py-3">
+                    <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
+                    ${nome}
+                </td>
+                <td>
+                    ${data}
+                </td>
+                <td>
+                    <span class="especialidade">${especialidade}</span>
+                </td>
+                <td>
+                    ${CRM}
+                </td>
+                <td>
+                    <div class="form-check form-switch d-flex justify-content-center">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    </div> 
+                </td>
+                <td class="acoes">
+                    <a href="">
+                        <img src="../img/edit.svg" alt="">
+                    </a>
+                    <a href="">
+                        <img src="../img/delete.svg" alt="">
+                    </a>
+                </td>
+            </tr>
+            `
+
+            return item
+        }*/
+
+        /*
+        let medicoHTML = medicoDados.map((item, index) => {
+            const html = createItem(item.name, item.data, item.especialidade, item.CRM);
+            return html
+        })
+        
+        console.log(medicoHTML)
+        */
+
+        //const $tbodyMedico = document.querySelector('#medicosDom');
+        //medicoHTML.forEach((item, index) => $tbodyMedico.insertAdjacentHTML("beforeend", item))
+
+        let itensPorPagina = 5;
+        const estado = {
+            pag: 1,
+            itensPorPagina,
+            pagTotal: Math.ceil(medicoDados.length / itensPorPagina)
+        }
+
+        const DOM = {
+            get(elemento) {
+                return document.querySelector(elemento)
+            }
+        }
+
+        const controles = {
+            proximo() {
+                estado.pag++
+
+                if(estado.pag > estado.pagTotal) {
+                    estado.pag--
+                }
+            },
+
+            anterior() {
+                estado.pag--
+
+                if(estado.pag < 1) {
+                    estado.pag++
+                }
+            },
+
+            irPara(pag) {
+                if(pag < 1) pag = 1
+
+                estado.pag = pag
+
+                if(pag > estado.pagTotal) {
+                    estado.pag = estado.pagTotal
+                }
+            },
+
+            listeners() {
+                DOM.get('#primeiroMedico').addEventListener('click', () => {controles.irPara(1); atualizar()})
+                DOM.get('#ultimoMedico').addEventListener('click', () => {controles.irPara(estado.pagTotal); atualizar()})
+
+                DOM.get('#medicoAnterior').addEventListener('click', () => {controles.anterior(); atualizar()})
+                DOM.get('#medicoPosterior').addEventListener('click', () => {controles.proximo(); atualizar()})
+            },
+        }
+
+        const lista = {
+            criar(item) {
+                const itemMedico = `
+                    <tr class="medicoItem align-middle">
+                        <td class="py-3">
+                            <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
+                            ${item.nome}
+                        </td>
+                        <td>
+                            ${item.data}
+                        </td>
+                        <td>
+                            <span class="especialidade">${item.especialidade}</span>
+                        </td>
+                        <td>
+                            ${item.CRM}
+                        </td>
+                        <td>
+                            <div class="form-check form-switch d-flex justify-content-center">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                            </div> 
+                        </td>
+                        <td class="acoes">
+                            <a href="">
+                                <img src="../img/edit.svg" alt="">
+                            </a>
+                            <a href="">
+                                <img src="../img/delete.svg" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                    `
+                DOM.get('#medicosDom').insertAdjacentHTML("beforeend", itemMedico)
+            },
+
+            atualizar() {
+                DOM.get('#medicosDom').innerHTML = ''
+
+                let pag = estado.pag - 1
+                let inicio = pag * estado.itensPorPagina
+                let fim = inicio + estado.itensPorPagina
+                
+                let listaCortada = medicoDados.slice(inicio, fim)
+
+                listaCortada.forEach(lista.criar)
+            }
+        }
+        
+        const botoes = {
+            criar() {
+
+            }
+
+            atualizar() {
+                DOM.get()
+            }
+        }
+
+        function atualizar() {
+            lista.atualizar()
+        }
+
+        function iniciar() {
+            lista.atualizar()
+            controles.listeners()
+        }
+        iniciar();
+
+    </script>
 </body>

@@ -2,14 +2,14 @@ const Adm = require('../models/adm');
 const Paciente = require('../models/paciente');
 
 exports.loginGet = (req, res) => {
-  res.render('login')
+  res.render('login', {titulo: 'Blackwell', style: 'login'})
 }
 
 exports.loginPost = async (req, res) => {
   const paciente = await Paciente.findOne({usuario: req.body.usuario, senha: req.body.senha}).exec();
   
   if(paciente != null) {
-    // Chamar middleware de usuario para registrar
+    global.tipoUsuario = "USER"
 
     return res.redirect('/perfil')
   }
@@ -17,16 +17,16 @@ exports.loginPost = async (req, res) => {
   const admin = await Adm.findOne({usuario: req.body.usuario, senha: req.body.senha}).exec();
     
   if(admin != null) {
-    // Chamar middleware de admin para registrar
+    global.tipoUsuario = "ADM"
 
     return res.redirect('/admin/')
   }
   
-  return res.render('login', {mensagem: 'Usuário não encontrado'})
+  return res.render('login', {mensagem: 'Usuário não encontrado', titulo: 'Blackwell', style: 'login'})
 }
 
 exports.sair = async (req, res) => {
-  // Apagar o registro do middleware
+  global.tipoUsuario = ""
 
   res.redirect('/')
 }
