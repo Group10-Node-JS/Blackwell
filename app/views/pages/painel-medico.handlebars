@@ -70,7 +70,11 @@
                             <img class="activator" src="/img/Rectangle 20.png">
                         </div>
                         <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4"> <img src="/img/pexels-tima-miroshnichenko-5452201.jpg" alt="" style="width:42px; height:42px;"class="circle"> Olá, Dr(a). {{{resultado.medico}}}</span>
+                            <span class="card-title activator grey-text text-darken-4"> <img src="/img/pexels-tima-miroshnichenko-5452201.jpg" alt="" style="width:42px; height:42px;"class="circle"> 
+                            {{#with medico}}
+                            Olá, Dr(a). {{nome}}
+                            {{/with}}
+                            </span>
                         </div>  
                     </div>
                 </div>
@@ -80,7 +84,7 @@
             <div class="row">
                 <h3 class="title-section">Atendimentos</h3>
 
-                <div class="col-12">
+                {{!-- <div class="col-12">
                     <form class="form-inline my-2 my-lg-0 pl-3-lg">
                         <div class="row">
                             <div class="input-field col s6">
@@ -88,7 +92,13 @@
                               <input id="icon_prefix" type="text" class="validate">
                               <label for="icon_prefix">Pesquise por paciente</label>
                             </div>
-                        </form>
+                        </form> --}}
+
+
+
+                        <form class="col-7 col-md-4 col-lg-3">
+          <input type="search" id="pesquisaGeral" class="form-control border-0 rounded-pill" placeholder="Buscar paciente" aria-label="Search">
+        </form>
 
                 </div>
             </div>
