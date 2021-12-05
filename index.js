@@ -2,6 +2,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const loginRoutes = require('./routers/login-router')
+const admRoutes = require('./routers/adm-router')
+const pacienteRoutes = require('./routers/paciente-router')
 // Instalamos e usamos o dotenv para proteger dados sensíveis das variáveis de ambiente, ex.: senha do banco de dados. No arquivo .env temos que escrever tudo com letras maiúsculas e não podemos usar espaços, também não é recomendado fazer comentários
 require('dotenv').config()
 // Path é um módulo nativo do node para lidar com caminho de arquivos ou pastas
@@ -50,6 +53,10 @@ server.engine('handlebars', hbs.engine)
 server.set('views', __dirname + '/app/views/pages')
 // Confirmação do motor de renderização
 server.set('view engine', 'handlebars')
+
+server.use(loginRoutes)
+server.use('/admin', admRoutes)
+server.use(pacienteRoutes)
 
 //3º Escutando a porta e testando a execução do servidor | listen (vem do Express)
 server.listen(porta, ()=>{

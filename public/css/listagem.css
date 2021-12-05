@@ -1,0 +1,185 @@
+#containerWrapper {
+    background-color: #F6F8FB;
+}
+
+#pesquisaGeral {
+    background: url(/img/default.svg) no-repeat scroll 10px 10px;
+    background-color: white;
+    padding-left: 35px;
+}
+
+.pesquisaTabela, .pesquisaTabela #pesquisaMedico, .pesquisaTabela #pesquisaPaciente{
+    background-color: #EFF0F6;
+}
+
+#adicionarMedico, #adicionarPaciente {
+    margin-left: 16px;
+
+    border-radius: 100%;
+    border: none;
+    
+    width: 44px !important;
+    height: 40px !important;
+    
+    font-size: 40px;
+    background: #F2CA50;
+    color: white;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#adicionarMedico span, #adicionarPaciente span{
+    margin-bottom: 25%;
+}
+
+
+#formTabelaMedico section:nth-child(3) select {
+    width: 185px !important;
+    height: 44px !important;
+
+    color: #797979;
+    border-width: 2px;
+    border-color: #EEEEEE;
+}
+
+.especialidade {
+    color: #FFB648;
+    background-color: #F2CA5022;
+    border-width: none;
+    border-radius: 16px;
+    padding: 2px 6px;
+}
+
+.form-check-input {
+    width: 3rem !important;
+    padding: 0.75rem 0 !important;
+}
+
+.form-check-input:checked {
+    background-color: #268C5C !important;
+    border-color: #268C5C !important;
+}
+
+.acoes a {
+    text-decoration: none !important;
+}
+
+.acoes a:nth-child(1) {
+    margin-right: 10px;
+}
+
+
+.pagination li a {
+    border: none !important;
+    
+    margin: 0 8px;
+}
+
+.voltarTabela, .avancarTabela {
+    text-align: center;
+}
+
+.voltarTabela a, .avancarTabela a {
+    background-color: #268C5C !important;
+    border-radius: 4px !important;
+    font-size: 24px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    width: 2.75rem;
+    height: 2.75rem;
+}
+
+.lista-numero.medico-lista {
+    margin-right: 8px;
+}
+
+/* .voltarTabela.primeiro-da-fila a {
+    background-color: #2F49D1 !important;
+    opacity: 10%;
+}
+
+.avancarTabela.ultimo-da-fila a {
+    background-color: #2F49D1 !important;
+    opacity: 10%;
+} */
+
+.lista-numero {
+    display: flex;
+    align-items: center;
+}
+
+.lista-numero.medico-lista a{
+    text-decoration: none;
+    color: #000;
+}
+
+.active {
+    color: #F25C27 !important;
+}
+
+.ativo {
+    color: #268C5C;
+    background-color: #268C5C22;
+    border-width: none;
+    border-radius: 16px;
+    padding: 2px 6px;
+}
+
+.pendente {
+    color: #FFB648;
+    background-color: #F2CA5022;
+    border-width: none;
+    border-radius: 16px;
+    padding: 2px 6px;
+}
+
+.cancelado {
+    color: #F25C27;
+    background-color: #F25C2722;
+    border-width: none;
+    border-radius: 16px;
+    padding: 2px 6px;
+}
+
+footer {
+    margin-top: 110px;
+    border-top: 2px solid #E0E1EA;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    color: #B9B9B9;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer div a{
+    text-decoration: none;
+    color: #B9B9B9;
+}
+
+footer div a:nth-child(1), footer div a:nth-child(2) {
+    margin-right: 8px;
+}
+
+
+@media screen and (min-width: 768px) {
+    .titulos {
+        font-size: 52px !important;
+    }    
+}
+
+@media screen and (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    footer p {
+        margin-bottom: 16px;
+    }
+}

@@ -1,0 +1,119 @@
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+
+
+<body class="bg-light">
+
+    <!-- Iniciando MAIN -->
+    <main class="container-fluid p-0">
+        <div class="row ">
+            <div class="col-md-4 col-lg-4 bg-white
+                p-2">
+
+                <!-- Título introdutório -->
+                <div class="py-2 text-center">
+                    <h4>Bem-vindo(a) à <br> empresa nova</h4>
+                    <p class="lead" style="font-size: 12px;">Você já possui alguma conta? <a href="/"
+                            style="color:#F25C27; font-family: 'Monteserrat'; font-weight: 900;">FAÇA SEU LOGIN</a></p>
+                </div>
+
+                <!-- Abrindo o Formulário de Cadastro -->
+                <form class="needs-validation" novalidate action="/cadastro" method="post">
+                    <div class="row">
+
+                        <!-- Input Nome do Paciente -->
+                        <div class="col-lg-12 col-sm-12 px-2">
+                            <label for="nomePaciente" class="form-label"> Nome completo:</label>
+                            <input name="nome" type="text" class="form-control" id="nomePaciente"
+                                placeholder="Digite o seu nome completo" value="" required>
+                            <div class="invalid-feedback">
+                                Campo nome é obrigatório.
+                            </div>
+                        </div>
+
+                        <!-- Input email do Paciente -->
+                        <div class="col-lg-12 col-sm-12 px-2">
+                            <label for="emailPaciente" class="form-label mt-3">Email: <span
+                                    class="text-muted"></span></label>
+                            <input name="email" type="email" class="form-control" id="emailPaciente" placeholder="you@example.com"
+                                required>
+                            <div class="invalid-feedback">
+                                Campo email é obrigatório.
+                            </div>
+                        </div>
+
+                        <!-- Input Telefone do Paciente -->
+                        <div class="col-lg-6 col-sm-6 px-2">
+                            <label for="telefonePaciente" class="form-label mt-3">Telefone:</label>
+                            <input name="telefone" type="text" class="form-control" id="telefonePaciente" placeholder="(DD)x xxxx-xxxx"
+                                required>
+                            <div class="invalid-feedback">
+                                Campo telefone é obrigatório.
+                            </div>
+                        </div>
+                        <!-- Input CPF do Paciente -->
+                        <div class="col-lg-6 col-sm-6 px-2">
+                            <label for="cpfPaciente" class="form-label mt-3">CPF:</label>
+                            <input name="cpf" type="text" class="form-control" id="cpfPaciente" placeholder="Digite o seu CPF"
+                                required>
+                            <div class="invalid-feedback">
+                                Campo CPR é obriigatório.
+                            </div>
+                        </div>
+                        <!-- Input Usuário do Paciente -->
+                        <div class="col-lg-12 col-sm-12 px-2">
+                            <label for="usuarioPaciente" class="form-label mt-3">Usuário :</label>
+                            <input name="usuario" type="text" class="form-control" id="usuarioPaciente"
+                                placeholder="Digite o seu usuario" required>
+                            <div class="invalid-feedback">
+                                Campo usuário é obrigatório.
+                            </div>
+                        </div>
+                        <!-- Input Senha do Paciente -->
+                        <div class="col-lg-12 col-sm-12 px-2">
+                            <label for="senhaPaciente" class="form-label mt-3">Senha :</label>
+                            <input name="senha" type="password" class="form-control" id="senhaPaciente" placeholder="******"
+                                required>
+                            <div class="invalid-feedback">
+                                Campo senha é obrigatório.
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <!-- Botões Limpar e Enviar-->
+                    <div class="d-flex justify-content-center mb-2">
+                        <button class=" btn mx-2 btnLimpar" type="reset">Limpar</button>
+                        <button class=" btn mx-2 btnEnviar" type="submit">Enviar</button>
+                    </div>
+                </form>
+                <p style="text-align: center; font-size: 12px;">Ao se inscrever você concorda com nossos Termos,
+                    Condições e Políticas de Privacidade</p>
+            </div>            
+            <div class="col d-flex align-items-end justify-content-center mx-auto bg-success ">
+                <p class="mb-1">&copy; 2017–2021 Company Name</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Link Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- Link de javascript para validação de cadastro do paciente -->
+    <script src="/js/form-validationPaci.js"></script>
+</body>
