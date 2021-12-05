@@ -7,7 +7,7 @@ exports.listagem = async (req, res) => {
   const pacientes = await Paciente.find({}).lean().exec()
   const especialidades = await Especialidade.find({}).lean().exec()
   
-  return res.render('listagem', {medicos, medicosDados: JSON.stringify(medicos), pacientes, especialidades, titulo: 'Admin - Backwell', style:'listagem'})
+  return res.render('listagem', {medicosDados: JSON.stringify(medicos), pacientesDados: JSON.stringify(pacientes), especialidadesDados: JSON.stringify(especialidades), titulo: 'Admin - Backwell', style:'listagem'})
 }
 
 // Ser usado no modal
