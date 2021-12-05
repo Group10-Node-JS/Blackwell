@@ -57,7 +57,7 @@ exports.perfilMedicoGet = async (req, res) => {
 exports.editarMedico = async (req, res) => {
   const medicoEscolhido = await Medico.findById(req.params.id).exec()
 
-  return res.render('cadastro-medicos', {medicoEscolhido, titulo: 'Editar Médico', style: 'form-validation'})
+  return res.render('inserir-medico', {medicoEscolhido, titulo: 'Editar Médico', style: 'estilos'})
 }
 
 exports.deletarMedico = async (req, res) => {
@@ -69,7 +69,7 @@ exports.deletarMedico = async (req, res) => {
 exports.editarPaciente = async (req, res) => {
   const pacienteEscolhido = await Paciente.findById(req.params.id).exec()
 
-  return res.render('cadastro-pacientes', {pacienteEscolhido, titulo:'Editar Paciente', style:'form-validation'})
+  return res.render('inserir-paciente', {pacienteEscolhido, titulo:'Editar Paciente', style:'form-validation'})
 }
 
 exports.deletarPaciente = async (req, res) => {
