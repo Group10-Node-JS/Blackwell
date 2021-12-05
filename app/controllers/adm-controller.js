@@ -50,7 +50,7 @@ exports.perfilMedicoGet = async (req, res) => {
   Medico.findById(idMedico, (erro, medico) => {
     if(erro) throw erro
 
-    res.render('painel-medico', {medico})
+    res.render('painel-medico', {medico, style:'estilos', titulo: 'Painel Médico'})
   })
 }
 
