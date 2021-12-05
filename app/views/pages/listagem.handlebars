@@ -4,24 +4,24 @@
 
         <div class="container">
             <main class="text-center">
-                  <ul class="nav justify-content-center fw-bold">
+                  {{!-- <ul class="nav justify-content-center fw-bold">
                     <li class="nav-item d-flex justify-content-center align-center pb-2 pb-md-0 px-4 col-12 col-md-auto">
-                      <img src="../img/dashboard.svg" class="pe-2" alt="">
-                      <a class="nav-link p-0 text-decoration-none text-dark" href="#">Dashboard</a>
+                      <img src="/img/dashboard.svg" class="pe-2" alt="">
+                      <a class="nav-link p-0 text-decoration-none text-dark" href="/admin/">Painel</a>
                     </li>
                     <li class="nav-item d-flex justify-content-center align-center py-2 py-md-0 px-4 col-12 col-md-auto">
-                      <img src="../img/doctor.svg" class="pe-2" alt="">
-                      <a class="nav-link p-0 text-decoration-none text-dark" href="#">Painel do Médico</a>
+                      <img src="/img/doctor.svg" class="pe-2" alt="">
+                      <a class="nav-link p-0 text-decoration-none text-dark" href="">Painel do Médico</a>
                     </li>
                     <li class="nav-item d-flex justify-content-center align-center py-2 py-md-0 px-4 col-12 col-md-auto">
-                      <img src="../img/doctor-man.svg" class="pe-2" alt="">
+                      <img src="/img/doctor-man.svg" class="pe-2" alt="">
                       <a class="nav-link p-0 text-decoration-none text-dark" href="#">Comunidade</a>
                     </li>
                     <li class="nav-item d-flex justify-content-center align-center pt-2 pt-md-0 px-4 col-12 col-md-auto">
-                      <img src="../img/question.svg" class="pe-2" alt="">
+                      <img src="/img/question.svg" class="pe-2" alt="">
                       <a class="nav-link p-0 text-decoration-none text-dark" href="#">Suporte</a>
                     </li>
-                  </ul>
+                  </ul> --}}
 
                   <section id="secaoMedico">
                     <h1 class="titulos text-center fw-bold my-4 my-md-5 pt-1">Lista de Médicos</h1>
@@ -407,10 +407,10 @@
                                 </div> 
                             </td>
                             <td class="acoes">
-                                <a href="">
+                                <a href="/admin/editarMedico/${item._id}">
                                     <img src="../img/edit.svg" alt="">
                                 </a>
-                                <a href="">
+                                <a href="/admin/deletarMedico/${item._id}">
                                     <img src="../img/delete.svg" alt="">
                                 </a>
                             </td>
@@ -580,10 +580,10 @@
                                 </div> 
                             </td>
                             <td class="acoes">
-                                <a href="">
+                                <a href="/admin/editarPaciente/${item._id}">
                                     <img src="../img/edit.svg" alt="">
                                 </a>
-                                <a href="">
+                                <a href="/admin/deletarPaciente/${item._id}">
                                     <img src="../img/delete.svg" alt="">
                                 </a>
                             </td>
