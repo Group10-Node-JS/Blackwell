@@ -44,7 +44,11 @@ server.use(express.json())
 const hbs = exphbs.create({
     defaultLayout: "main",
     layoutsDir: path.join(__dirname, "/app/views/layouts"),
-    partialsDir: path.join(__dirname, "/app/views/partials")
+    partialsDir: path.join(__dirname, "/app/views/partials"),
+    runtimeOptions:{
+        allowProtoPropertiesByDefault:true,
+        allowProtoMethodsByDefault: true
+    }
 })
 
 // Serve para o express entender o motor de renderização

@@ -49,7 +49,7 @@ exports.perfilMedicoGet = async (req, res) => {
   
   Medico.findById(idMedico, (erro, medico) => {
     if(erro) throw erro
-
+    console.log(medico)
     res.render('painel-medico', {medico, style:'estilos', titulo: 'Painel Médico'})
   })
 }

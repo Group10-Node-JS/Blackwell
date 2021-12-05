@@ -113,3 +113,9 @@ html {
     max-width: 300px;
     border-radius: 8px;
 }
+
+#pesquisaGeral {
+    background: url(/img/default.svg) no-repeat scroll 10px 10px;
+    background-color: white;
+    padding-left: 35px;
+}
