@@ -1,0 +1,680 @@
+<body>
+    <div class="container-fluid" id="containerWrapper">
+        {{> header }}
+
+        <div class="container">
+            <main class="text-center">
+                  <ul class="nav justify-content-center fw-bold">
+                    <li class="nav-item d-flex justify-content-center align-center pb-2 pb-md-0 px-4 col-12 col-md-auto">
+                      <img src="../img/dashboard.svg" class="pe-2" alt="">
+                      <a class="nav-link p-0 text-decoration-none text-dark" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item d-flex justify-content-center align-center py-2 py-md-0 px-4 col-12 col-md-auto">
+                      <img src="../img/doctor.svg" class="pe-2" alt="">
+                      <a class="nav-link p-0 text-decoration-none text-dark" href="#">Painel do Médico</a>
+                    </li>
+                    <li class="nav-item d-flex justify-content-center align-center py-2 py-md-0 px-4 col-12 col-md-auto">
+                      <img src="../img/doctor-man.svg" class="pe-2" alt="">
+                      <a class="nav-link p-0 text-decoration-none text-dark" href="#">Comunidade</a>
+                    </li>
+                    <li class="nav-item d-flex justify-content-center align-center pt-2 pt-md-0 px-4 col-12 col-md-auto">
+                      <img src="../img/question.svg" class="pe-2" alt="">
+                      <a class="nav-link p-0 text-decoration-none text-dark" href="#">Suporte</a>
+                    </li>
+                  </ul>
+
+                  <section id="secaoMedico">
+                    <h1 class="titulos text-center fw-bold my-4 my-md-5 pt-1">Lista de Médicos</h1>
+
+                    <section class="bg-white p-4">
+                        <form id="formTabelaMedico" class="d-flex flex-wrap">
+                            <section class="justify-content-center justify-content-md-start col-12 col-md-4 d-flex p-0">
+                                <div class="pesquisaTabela d-flex align-center rounded">
+                                    <input type="search" id="pesquisaMedico" class="form-control border-0" placeholder="Buscar" aria-label="Search">
+                                    <span class="pe-3 align-self-center"><img src="../img/default.svg" alt=""></span>
+                                </div>
+                                <button type="button" id="adicionarMedico"><span>+</span></button>
+                            </section>
+                            <section class="col-none col-md"></section>
+                            <section class="justify-content-center justify-content-md-end col-12 col-md-4 d-flex py-3 p-md-0 justify-content-end">
+                                <select class="me-4 rounded" name="convenio" id="">
+                                    <option value="" disabled selected hidden>Convênio</option>
+                                    <option value="unimed">Unimed</option>
+                                    <option value="cassems">Cassems</option>
+                                </select>
+                                <select class="rounded" name="status" id="">
+                                    <option value="" disabled selected hidden>Status</option>
+                                    <option value="ativo">Ativo</option>
+                                    <option value="inativo">Inativo</option>
+                                </select>
+                            </section>
+                        </form>
+                    </section>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover mx-auto table-borderless">
+                            <thead class="border-top border-bottom">
+                                <tr>
+                                    <th class="py-3">Médicos</th>
+                                    <th class="py-3">Data do Cadastro</th>
+                                    <th class="py-3">Especialidade</th>
+                                    <th class="py-3">CRM</th>
+                                    <th class="py-3">Situação</th>
+                                    <th class="py-3">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody class=" bg-white" id="medicosDom">
+                                {{!-- {{#each medicos}}
+                                
+                                <tr class="medicoItem align-middle">
+                                    <td class="py-3">
+                                        <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
+                                        {{name}}
+                                    </td>
+                                    <td>
+                                        {{data}}
+                                    </td>
+                                    <td>
+                                        <span class="especialidade">{{especialidade}}</span>
+                                    </td>
+                                    <td>
+                                        {{CRM}}
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-switch d-flex justify-content-center">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                        </div> 
+                                    </td>
+                                    <td class="acoes">
+                                        <a href="">
+                                            <img src="../img/edit.svg" alt="">
+                                        </a>
+                                        <a href="">
+                                            <img src="../img/delete.svg" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                             
+                                {{/each}} --}}
+
+                                {{!-- <tr class="align-middle">
+                                    <td class="py-3">
+                                        <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
+                                        Eleanor Pena
+                                    </td>
+                                    <td>
+                                        18.05.2020
+                                    </td>
+                                    <td>
+                                        <span class="especialidade">Clínico Geral</span>
+                                        <span class="especialidade">Cirurgia geral</span>
+                                        <span class="especialidade">Pediatria</span>
+                                    </td>
+                                    <td>
+                                        2021-CE
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-switch d-flex justify-content-center">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                        </div> 
+                                    </td>
+                                    <td class="acoes">
+                                        <a href="">
+                                            <img src="../img/edit.svg" alt="">
+                                        </a>
+                                        <a href="">
+                                            <img src="../img/delete.svg" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td class="py-3">
+                                        <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
+                                        Eleanor Pena
+                                    </td>
+                                    <td>
+                                        18.05.2020
+                                    </td>
+                                    <td>
+                                        <span class="especialidade">Clínico Geral</span>
+                                        <span class="especialidade">Cirurgia geral</span>
+                                        <span class="especialidade">Pediatria</span>
+                                    </td>
+                                    <td>
+                                        2021-CE
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-switch d-flex justify-content-center">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                        </div> 
+                                    </td>
+                                    <td class="acoes">
+                                        <a href="">
+                                            <img src="../img/edit.svg" alt="">
+                                        </a>
+                                        <a href="">
+                                            <img src="../img/delete.svg" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td class="py-3">
+                                        <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
+                                        Eleanor Pena
+                                    </td>
+                                    <td>
+                                        18.05.2020
+                                    </td>
+                                    <td>
+                                        <span class="especialidade">Clínico Geral</span>
+                                        <span class="especialidade">Cirurgia geral</span>
+                                        <span class="especialidade">Pediatria</span>
+                                    </td>
+                                    <td>
+                                        2021-CE
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-switch d-flex justify-content-center">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                        </div> 
+                                    </td>
+                                    <td class="acoes">
+                                        <a href="">
+                                            <img src="../img/edit.svg" alt="">
+                                        </a>
+                                        <a href="">
+                                            <img src="../img/delete.svg" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="align-middle">
+                                    <td class="py-3">
+                                        <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
+                                        Eleanor Pena
+                                    </td>
+                                    <td>
+                                        18.05.2020
+                                    </td>
+                                    <td>
+                                        <span class="especialidade">Clínico Geral</span>
+                                        <span class="especialidade">Cirurgia geral</span>
+                                        <span class="especialidade">Pediatria</span>
+                                    </td>
+                                    <td>
+                                        2021-CE
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-switch d-flex justify-content-center">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                        </div> 
+                                    </td>
+                                    <td class="acoes">
+                                        <a href="">
+                                            <img src="../img/edit.svg" alt="">
+                                        </a>
+                                        <a href="">
+                                            <img src="../img/delete.svg" alt="">
+                                        </a>
+                                    </td>
+                                </tr> --}}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <nav class="mt-4">
+                        <ul class="pagination justify-content-end" id="paginationDoc">   
+                            <li class="page-item voltarTabela">
+                                <a class="page-link text-white" id="primeiroMedico" href="#">&#171;</a>
+                            </li>
+                            <li class="page-item voltarTabela">
+                                <a class="page-link text-white" id="medicoAnterior" href="#">&lt;</a>
+                            </li>
+    
+                            <li class="page-item my-auto">
+                                <div class="d-flex lista-numero medico-lista">
+                                   
+                                </div>
+                            </li>
+
+                            <li class="page-item avancarTabela">
+                                <a class="page-link text-white" id="medicoPosterior" href="#">&gt;</a>
+                            </li>
+                            <li class="page-item avancarTabela">
+                                <a class="page-link text-white" id="ultimoMedico" href="#">&#187;</a>
+                            </li>  
+                        </ul>
+                    </nav>
+                  </section>
+
+                  <section id="secaoPaciente">
+                    <h1 class="titulos text-center fw-bold my-4 my-md-5 pt-1">Lista de Pacientes</h1>
+
+                    <section class="bg-white p-4">
+                        <form id="formTabelaPaciente" class="d-flex flex-wrap">
+                            <section class="justify-content-center justify-content-md-start col-12 col-md-4 d-flex p-0">
+                                <div class="pesquisaTabela d-flex align-center rounded">
+                                    <input type="search" id="pesquisaPaciente" class="form-control border-0" placeholder="Buscar" aria-label="Search">
+                                    <span class="pe-3 align-self-center"><img src="/img/default.svg" alt=""></span>
+                                </div>
+                                <button type="button" id="adicionarPaciente"><span>+</span></button>
+                            </section>
+                            <section class="col-none col-md"></section>
+                            <section class="justify-content-center justify-content-md-end col-12 col-md-4 d-flex py-3 p-md-0 justify-content-end">
+                                <select class="me-4 rounded" name="convenio" id="">
+                                    <option value="" disabled selected hidden>Convênio</option>
+                                    <option value="unimed">Unimed</option>
+                                    <option value="cassems">Cassems</option>
+                                </select>
+                                <select class="rounded" name="status" id="">
+                                    <option value="" disabled selected hidden>Status</option>
+                                    <option value="ativo">Ativo</option>
+                                    <option value="inativo">Inativo</option>
+                                </select>
+                            </section>
+                        </form>
+                    </section>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover mx-auto table-borderless">
+                            <thead class="border-top border-bottom">
+                                <tr>
+                                    <th class="py-3">Pacientes</th>
+                                    <th class="py-3">Data do Cadastro</th>
+                                    <th class="py-3">Convênio</th>
+                                    <th class="py-3">Telefone</th>
+                                    <th class="py-3">Situação</th>
+                                    <th class="py-3">Acesso</th>
+                                    <th class="py-3">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody class=" bg-white" id="pacientesDom">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <nav class="mt-4">
+                        <ul class="pagination justify-content-end">   
+                            <li class="page-item voltarTabela">
+                                <a class="page-link text-white" id="primeiroPaciente" href="#">&#171;</a>
+                            </li>
+                            <li class="page-item voltarTabela">
+                                <a class="page-link text-white" id="pacienteAnterior" href="#">&lt;</a>
+                            </li>
+    
+                            <li class="page-item my-auto">
+                                <div class="d-flex lista-numero paciente-lista">
+                                   
+                                </div>
+                            </li>
+
+                            <li class="page-item avancarTabela">
+                                <a class="page-link text-white" id="pacientePosterior" href="#">&gt;</a>
+                            </li>
+                            <li class="page-item avancarTabela">
+                                <a class="page-link text-white" id="ultimoPaciente" href="#">&#187;</a>
+                            </li>  
+                        </ul>
+                    </nav>
+                  </section>
+            </main>
+        </div>
+
+        {{> footer }}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        const medicosDados = JSON.parse('{{{medicosDados}}}')
+
+        const pacientesDados = JSON.parse('{{{pacientesDados}}}')
+
+        const especialidadesDados = JSON.parse('{{{especialidadesDados}}}')
+        
+        function paginacaoMedicos() {
+
+            let itensPorPagina = 5;
+            const estado = {
+                pag: 1,
+                itensPorPagina,
+                pagTotal: Math.ceil(medicosDados.length / itensPorPagina),
+                maxBotoesVisiveis: 5
+            }
+
+            const DOM = {
+                get(elemento) {
+                    return document.querySelector(elemento)
+                }
+            }
+
+            const controles = {
+                proximo() {
+                    estado.pag++
+
+                    if(estado.pag > estado.pagTotal) {
+                        estado.pag--
+                    }
+                },
+
+                anterior() {
+                    estado.pag--
+
+                    if(estado.pag < 1) {
+                        estado.pag++
+                    }
+                },
+
+                irPara(pag) {
+                    if(pag < 1) pag = 1
+
+                    estado.pag = +pag
+
+                    if(pag > estado.pagTotal) {
+                        estado.pag = estado.pagTotal
+                    }
+                },
+
+                listeners() {
+                    DOM.get('#primeiroMedico').addEventListener('click', () => {controles.irPara(1); atualizarTudo()})
+                    DOM.get('#ultimoMedico').addEventListener('click', () => {controles.irPara(estado.pagTotal); atualizarTudo()})
+
+                    DOM.get('#medicoAnterior').addEventListener('click', () => {controles.anterior(); atualizarTudo()})
+                    DOM.get('#medicoPosterior').addEventListener('click', () => {controles.proximo(); atualizarTudo()})
+                },
+            }
+
+            const lista = {
+                criar(item) {
+                    const itemMedico = `
+                        <tr class="medicoItem align-middle">
+                            <td class="py-3">
+                                <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
+                                ${item.nome}
+                            </td>
+                            <td>
+                                ${item.data}
+                            </td>
+                            <td>
+                                <span class="especialidade">${item.especialidade}</span>
+                            </td>
+                            <td>
+                                ${item.CRM}
+                            </td>
+                            <td>
+                                <div class="form-check form-switch d-flex justify-content-center">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                </div> 
+                            </td>
+                            <td class="acoes">
+                                <a href="">
+                                    <img src="../img/edit.svg" alt="">
+                                </a>
+                                <a href="">
+                                    <img src="../img/delete.svg" alt="">
+                                </a>
+                            </td>
+                        </tr>
+                        `
+                    DOM.get('#medicosDom').insertAdjacentHTML("beforeend", itemMedico)
+                },
+
+                atualizar() {
+                    DOM.get('#medicosDom').innerHTML = ''
+
+                    let pag = estado.pag - 1
+                    let inicio = pag * estado.itensPorPagina
+                    let fim = inicio + estado.itensPorPagina
+                    
+                    let listaCortada = medicosDados.slice(inicio, fim)
+
+                    listaCortada.forEach(lista.criar)
+                }
+            }
+            
+            const botoes = {
+                criar(numero) {
+                    const botao = document.createElement('a')
+
+                    botao.setAttribute('href', "#")
+
+                    botao.classList.add('page-link,text-dark')
+
+                    /*const botao = `
+                    <a onclick="" class="page-link text-dark" href="#">${numero}</a>
+                    `*/
+
+                    botao.innerHTML = numero
+
+                    if(estado.pag == numero) {
+                        botao.classList.add('active')
+                    }
+
+                    botao.addEventListener('click', (event) => {
+                        const pagina = event.target.innerText
+
+                        controles.irPara(pagina)
+                        atualizarTudo()
+                    })
+
+                    DOM.get('.lista-numero.medico-lista').appendChild(botao)
+
+
+                },
+
+                atualizar() {
+                    DOM.get('.lista-numero.medico-lista').innerHTML = ""
+                    const {maxEsquerda, maxDireita} = botoes.botoesNumVisiveis()
+
+                    for(let pagina = maxEsquerda; pagina <= maxDireita; pagina++) {
+                        botoes.criar(pagina)
+                    }
+                },
+
+                botoesNumVisiveis() {
+                    let maxEsquerda = (estado.pag - Math.floor(estado.maxBotoesVisiveis / 2))
+                    let maxDireita = (estado.pag + Math.floor(estado.maxBotoesVisiveis / 2))
+
+                    if(maxEsquerda < 1) {
+                        maxEsquerda = 1
+                        maxDireita = estado.maxBotoesVisiveis
+                    }
+
+                    if(maxDireita > estado.pagTotal) {
+                        maxEsquerda = estado.pagTotal - (estado.maxBotoesVisiveis - 1)
+                        maxDireita = estado.pagTotal
+
+                        if(maxEsquerda < 1) maxEsquerda = 1
+                    }
+
+                    return {maxEsquerda, maxDireita}
+                }
+            }
+
+            function atualizarTudo() {
+                lista.atualizar()
+                botoes.atualizar()
+            }
+
+            function iniciar() {
+                atualizarTudo()
+                controles.listeners()
+            }
+            iniciar();
+
+        }
+        paginacaoMedicos();
+
+        function paginacaoPacientes() {
+            let itensPorPagina = 5;
+            const estado = {
+                pag: 1,
+                itensPorPagina,
+                pagTotal: Math.ceil(pacientesDados.length / itensPorPagina),
+                maxBotoesVisiveis: 5
+            }
+
+            const DOM = {
+                get(elemento) {
+                    return document.querySelector(elemento)
+                }
+            }
+
+            const controles = {
+                proximo() {
+                    estado.pag++
+
+                    if(estado.pag > estado.pagTotal) {
+                        estado.pag--
+                    }
+                },
+
+                anterior() {
+                    estado.pag--
+
+                    if(estado.pag < 1) {
+                        estado.pag++
+                    }
+                },
+
+                irPara(pag) {
+                    if(pag < 1) pag = 1
+
+                    estado.pag = +pag
+
+                    if(pag > estado.pagTotal) {
+                        estado.pag = estado.pagTotal
+                    }
+                },
+
+                listeners() {
+                    DOM.get('#primeiroPaciente').addEventListener('click', () => {controles.irPara(1); atualizarTudo()})
+                    DOM.get('#ultimoPaciente').addEventListener('click', () => {controles.irPara(estado.pagTotal); atualizarTudo()})
+
+                    DOM.get('#pacienteAnterior').addEventListener('click', () => {controles.anterior(); atualizarTudo()})
+                    DOM.get('#pacientePosterior').addEventListener('click', () => {controles.proximo(); atualizarTudo()})
+                },
+            }
+
+            const lista = {
+                criar(item) {
+                    const itemPaciente = `
+                        <tr class="align-middle">
+                            <td class="py-3">
+                                <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
+                                ${item.nome}
+                            </td>
+                            <td>
+                                ${item.data}
+                            </td>
+                            <td>${item.convenio}</td>
+                            <td>
+                                ${item.telefone}
+                            </td>
+                            <td>
+                                <span class="ativo">Ativo</span>
+                            </td>
+                            <td>
+                                <div class="form-check form-switch d-flex justify-content-center">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                </div> 
+                            </td>
+                            <td class="acoes">
+                                <a href="">
+                                    <img src="../img/edit.svg" alt="">
+                                </a>
+                                <a href="">
+                                    <img src="../img/delete.svg" alt="">
+                                </a>
+                            </td>
+                        </tr>
+                        `
+                    DOM.get('#pacientesDom').insertAdjacentHTML("beforeend", itemPaciente)
+                },
+
+                atualizar() {
+                    DOM.get('#pacientesDom').innerHTML = ''
+
+                    let pag = estado.pag - 1
+                    let inicio = pag * estado.itensPorPagina
+                    let fim = inicio + estado.itensPorPagina
+                    
+                    let listaCortada = pacientesDados.slice(inicio, fim)
+
+                    listaCortada.forEach(lista.criar)
+                }
+            }
+            
+            const botoes = {
+                criar(numero) {
+                    const botao = document.createElement('a')
+
+                    botao.setAttribute('href', "#")
+
+                    botao.classList.add('page-link,text-dark')
+
+                    /*const botao = `
+                    <a onclick="" class="page-link text-dark" href="#">${numero}</a>
+                    `*/
+
+                    botao.innerHTML = numero
+
+                    if(estado.pag == numero) {
+                        botao.classList.add('active')
+                    }
+
+                    botao.addEventListener('click', (event) => {
+                        const pagina = event.target.innerText
+
+                        controles.irPara(pagina)
+                        atualizarTudo()
+                    })
+
+                    DOM.get('.lista-numero.paciente-lista').appendChild(botao)
+
+
+                },
+
+                atualizar() {
+                    DOM.get('.lista-numero.paciente-lista').innerHTML = ""
+                    const {maxEsquerda, maxDireita} = botoes.botoesNumVisiveis()
+
+                    for(let pagina = maxEsquerda; pagina <= maxDireita; pagina++) {
+                        botoes.criar(pagina)
+                    }
+                },
+
+                botoesNumVisiveis() {
+                    let maxEsquerda = (estado.pag - Math.floor(estado.maxBotoesVisiveis / 2))
+                    let maxDireita = (estado.pag + Math.floor(estado.maxBotoesVisiveis / 2))
+
+                    if(maxEsquerda < 1) {
+                        maxEsquerda = 1
+                        maxDireita = estado.maxBotoesVisiveis
+                    }
+
+                    if(maxDireita > estado.pagTotal) {
+                        maxEsquerda = estado.pagTotal - (estado.maxBotoesVisiveis - 1)
+                        maxDireita = estado.pagTotal
+
+                        if(maxEsquerda < 1) maxEsquerda = 1
+                    }
+
+                    return {maxEsquerda, maxDireita}
+                }
+            }
+
+            function atualizarTudo() {
+                lista.atualizar()
+                botoes.atualizar()
+            }
+
+            function iniciar() {
+                atualizarTudo()
+                controles.listeners()
+            }
+            iniciar();
+        }
+        paginacaoPacientes();
+    </script>
+</body>

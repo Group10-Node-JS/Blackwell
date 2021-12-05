@@ -1,0 +1,123 @@
+
+<!-- Compiled and minified CSS -->
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link rel="stylesheet" href="/css/estilos.css">
+<title>Painel Paciente</title>
+<style>
+    label {
+        font-family: "Poppins";
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    form {
+        max-width: 600px;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 40px;
+    }
+
+    @media screen and (max-width: 425px) {
+        form  {
+            max-width: 400px;
+            /* padding: 15px; */
+            background-color: #F6F8FB;
+        }
+    }
+</style>
+
+<body>
+    <main>
+        {{> header }}
+
+        <section class="container-fluid p-0">
+            <div class="row text-center">
+                <h1 class=" title1 p-0">Inserir Paciente</h1>
+            </div>
+
+        </section>
+        <section class="container-fluid p-0 mb-5">
+            <div class="row">
+                <div class="col p-0">
+                    <form class="needs-validation mx-auto" novalidate>
+                        <div class="row">
+
+                            <!-- Input Nome do Paciente -->
+                            <div class="col-lg-12 col-sm-12 p-0">
+                                <label for="nomePaciente" class="form-label"> Nome completo:</label>
+                                <input type="text" class="form-control" id="nomePaciente"
+                                    placeholder="Digite o seu nome completo" value="" required>
+                                <div class="invalid-feedback">
+                                    Campo nome é obrigatório.
+                                </div>
+                            </div>
+
+                            <!-- Input email do Paciente -->
+                            <div class="col-lg-12 col-sm-12 p-0">
+                                <label for="emailPaciente" class="form-label mt-3">Email: <span
+                                        class="text-muted"></span></label>
+                                <input type="email" class="form-control" id="emailPaciente"
+                                    placeholder="you@example.com" required>
+                                <div class="invalid-feedback">
+                                    Campo email é obrigatório.
+                                </div>
+                            </div>
+
+                            <!-- Input Telefone do Paciente -->
+                            <div class="col-lg-6 col-sm-6 p-0">
+                                <label for="telefonePaciente" class="form-label mt-3">Telefone:</label>
+                                <input type="text" class="form-control" id="telefonePaciente"
+                                    placeholder="(DD)x xxxx-xxxx" required>
+                                <div class="invalid-feedback">
+                                    Campo telefone é obrigatório.
+                                </div>
+                            </div>
+                            <!-- Input CPF do Paciente -->
+                            <div class="col-lg-6 col-sm-6 p-0">
+                                <label for="cpfPaciente" class="form-label mt-3">CPF:</label>
+                                <input type="text" class="form-control" id="cpfPaciente" placeholder="Digite o seu CPF"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Campo CPR é obriigatório.
+                                </div>
+                            </div>
+                            <!-- Input Usuário do Paciente -->
+                            <div class="col-lg-12 col-sm-12 p-0">
+                                <label for="usuarioPaciente" class="form-label mt-3">Usuário :</label>
+                                <input type="text" class="form-control" id="usuarioPaciente"
+                                    placeholder="Digite o seu usuario" required>
+                                <div class="invalid-feedback">
+                                    Campo usuário é obrigatório.
+                                </div>
+                            </div>
+                            <!-- Input Senha do Paciente -->
+                            <div class="col-lg-12 col-sm-12 p-0">
+                                <label for="senhaPaciente" class="form-label mt-3">Senha :</label>
+                                <input type="password" class="form-control" id="senhaPaciente" placeholder="******"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Campo senha é obrigatório.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Botões Limpar e Enviar-->
+                        <div class="d-flex justify-content-center mb-2 mt-3">
+                            <button class="btn btn-primary btn-mx-2 btnLimpar " type="reset">Limpar Dados</button>
+                            <button class=" btn btn-success mx-2 btnEnviar" type="submit">Adicionar Paciente</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('select').formSelect();
+            });
+        </script>    
+</body>
