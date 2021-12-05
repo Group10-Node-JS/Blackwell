@@ -7,7 +7,11 @@ router.all('*', Admin)
 
 router.get('/', admController.listagem)
 
+router.get('/cadastroMedico', admController.cadastroMedicoGet)
+
 router.post('/cadastroMedico', admController.cadastroMedicoPost)
+
+router.get('/cadastroPaciente', admController.cadastroPacienteGet)
 
 router.post('/cadastroPaciente', admController.cadastroPacientePost)
 

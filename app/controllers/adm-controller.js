@@ -10,40 +10,6 @@ exports.listagem = async (req, res) => {
   return res.render('listagem', {medicosDados: JSON.stringify(medicos), pacientesDados: JSON.stringify(pacientes), especialidadesDados: JSON.stringify(especialidades), titulo: 'Admin - Backwell', style:'listagem'})
 }
 
-// Ser usado no modal
-exports.cadastroMedicoPost = async (req, res) => {
-  const medicoExistente = await Medico.findOne({email: req.body.email, usuario: req.body.usuario, crm: req.body.crm}).exec()
-
-  if(medicoExistente != null) {
-    return res.render('cadastro-medicos', {mensagem: 'Médico já existente', style: 'form-validation', titulo: 'Cadastro de Médicos'})
-  }
-
-  const medicoNovo = new Medico()
-
-  Object.assign(medicoNovo, req.body)
-
-  await medicoNovo.save()
-
-  return res.render('cadastro-medicos', {mensagem: "Medico cadastrado", style: 'form-validation', titulo: 'Cadastro de Médicos'})
-}
-
-// Ser usado no modal
-exports.cadastroPacientePost = async (req, res) => {
-  const pacienteExistente = await Paciente.findOne({email: req.body.email, usuario: req.body.usuario, cpf: req.body.cpf}).exec()
-
-  if(pacienteExistente != null) {
-    return res.render('cadastro-pacientes', {mensagem: 'Usuário já existente', style: 'form-validation', titulo: 'Cadastro de Pacientes'})
-  }
-
-  const pacienteNovo = new Paciente()
-
-  Object.assign(pacienteNovo, req.body)
-
-  await pacienteNovo.save()
-
-  return res.render('cadastro-pacientes', {mensagem: "Paciente cadastrado", style: 'form-validation', titulo: 'Cadastro de Pacientes'})
-}
-
 exports.perfilMedicoGet = async (req, res) => {
   const idMedico = req.params.id
   
@@ -74,6 +40,49 @@ exports.editarPaciente = async (req, res) => {
 
 exports.deletarPaciente = async (req, res) => {
   await Paciente.findByIdAndDelete(req.params.id).exec()
+
+  return res.redirect('/admin/')
+}
+
+// control para página de adicionar pacientes
+exports.cadastroPacienteGet = (req, res) => {
+  res.render('inserir-paciente', {style:"estilos", titulo: "Painel Paciente" } )
+}
+
+
+exports.cadastroPacientePost = async (req, res) => {
+  const pacienteExistente = await Paciente.findOne({email: req.body.email, usuario: req.body.usuario, cpf: req.body.cpf}).exec()
+
+  if(pacienteExistente != null) {
+    return res.render('inserir-paciente', {mensagem: 'Usuário já existente', style: 'form-validation', titulo: 'Cadastro de Pacientes'})
+  }
+
+  const pacienteNovo = new Paciente()
+
+  Object.assign(pacienteNovo, req.body)
+
+  await pacienteNovo.save()
+
+  return res.redirect('/admin/')
+}
+
+exports.cadastroMedicoGet = (req, res) => {
+  res.render('inserir-medico', {style:"estilos", titulo: "Painel Médico" } )
+}
+
+
+exports.cadastroMedicoPost = async (req, res) => {
+  const medicoExistente = await Medico.findOne({email: req.body.email, usuario: req.body.usuario, crm: req.body.crm}).exec()
+
+  if(medicoExistente != null) {
+    return res.render('inserir-medico', {mensagem: 'Médico já existente', style: 'form-validation', titulo: 'Cadastro de Médicos'})
+  }
+
+  const medicoNovo = new Medico()
+
+  Object.assign(medicoNovo, req.body)
+
+  await medicoNovo.save()
 
   return res.redirect('/admin/')
 }
