@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600&family=Poppins:ital,wght@0,200;0,300;1,300&display=swap');
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+nav {
+  margin-top: 20px !important;
+}
+
+body {
+  /* margin: 30px;
+  padding: 30px; */
+  background-image: url(/img/Group_7517.png);
+  background-repeat: no-repeat;
+  background-position-x: calc(97%);
+  background-position-y: calc(100%);
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.botaoLogin {
+  width: 100%;
+}
+
+@media screen and (max-width: 425px) {
+  nav {
+    margin-top: 20px !important;
+  }
+
+  body {
+    height: 850px;
+    background-position: center;
+    background-position: bottom;
+  }
+
+  .titulo {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  form.formLogin {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  form .botaoLogin {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .img-fluid {
+    margin-bottom: 50px;
+    width: 200px;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .img-fluid {
+    width: 200px;
+  }
+
+  nav {
+    margin-top: 20px !important;
+    margin-bottom: 20px;
+  }
+}

@@ -8,7 +8,6 @@ const Agendamento = mongoose.model('agendamento', {
     hora: String,
     data: Date,
     status: String,
-
 })
 
 module.exports = Agendamento
