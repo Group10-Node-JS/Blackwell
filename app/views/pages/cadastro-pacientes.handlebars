@@ -36,71 +36,128 @@
                 <form class="needs-validation" novalidate action="/cadastro" method="post">
                     <div class="row">
 
-                        <!-- Input Nome do Paciente -->
-                        <div class="col-lg-12 col-sm-12 px-2">
-                            <label for="nomePaciente" class="form-label"> Nome completo:</label>
-                            <input name="nome" type="text" class="form-control" id="nomePaciente"
-                                placeholder="Digite o seu nome completo" value="" required>
-                            <div class="invalid-feedback">
-                                Campo nome é obrigatório.
+                            <!-- Input Nome do Paciente -->
+                            <div class="col-lg-12 col-sm-12 p-0">
+                                <label for="nomePaciente" class="form-label mt-3"> Nome completo:</label>
+                           
+                                <input type="text" class="form-control" id="nomePaciente"
+                                    placeholder="Digite o seu nome completo" value="" name="nome" required>
+                                <div class="invalid-feedback">
+                                    Campo nome é obrigatório.
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- Input email do Paciente -->
-                        <div class="col-lg-12 col-sm-12 px-2">
-                            <label for="emailPaciente" class="form-label mt-3">Email: <span
-                                    class="text-muted"></span></label>
-                            <input name="email" type="email" class="form-control" id="emailPaciente" placeholder="you@example.com"
-                                required>
-                            <div class="invalid-feedback">
-                                Campo email é obrigatório.
-                            </div>
-                        </div>
 
-                        <!-- Input Telefone do Paciente -->
-                        <div class="col-lg-6 col-sm-6 px-2">
-                            <label for="telefonePaciente" class="form-label mt-3">Telefone:</label>
-                            <input name="telefone" type="text" class="form-control" id="telefonePaciente" placeholder="(DD)x xxxx-xxxx"
-                                required>
-                            <div class="invalid-feedback">
-                                Campo telefone é obrigatório.
+                            <!-- Input Endereço do Paciente -->
+                            <div class="col-lg-12 col-sm-12 p-0">
+                                <label for="endecoPaciente" class="form-label mt-3"> Endereço: </label>
+                               
+                                <input type="text" class="form-control" id="enderecoPaciente"
+                                    placeholder="Digite o seu nome completo" value="" name="enderecoCompleto" required>
+                                <div class="invalid-feedback">
+                                    Campo endereço é obrigatório.
+                                </div>
                             </div>
-                        </div>
-                        <!-- Input CPF do Paciente -->
-                        <div class="col-lg-6 col-sm-6 px-2">
-                            <label for="cpfPaciente" class="form-label mt-3">CPF:</label>
-                            <input name="cpf" type="text" class="form-control" id="cpfPaciente" placeholder="Digite o seu CPF"
-                                required>
-                            <div class="invalid-feedback">
-                                Campo CPR é obriigatório.
+                            <div class="d-flex gap-2 p-0">
+                                <!-- Input Data de Nascimento do Paciente -->
+                            <div class="col-lg-6 col-sm-6 p-0">
+                                <label for="dataNascimento" class="form-label mt-3"> Data Nascimento: </label>
+                               
+                                <input type="date" class="form-control" id="dataNascimento"
+                                    placeholder="Digite o seu nome completo" value="" name="dataNascimento" required>
+                                <div class="invalid-feedback">
+                                    Campo data nascimento é obrigatório.
+                                </div>
                             </div>
-                        </div>
-                        <!-- Input Usuário do Paciente -->
-                        <div class="col-lg-12 col-sm-12 px-2">
-                            <label for="usuarioPaciente" class="form-label mt-3">Usuário :</label>
-                            <input name="usuario" type="text" class="form-control" id="usuarioPaciente"
-                                placeholder="Digite o seu usuario" required>
-                            <div class="invalid-feedback">
-                                Campo usuário é obrigatório.
-                            </div>
-                        </div>
-                        <!-- Input Senha do Paciente -->
-                        <div class="col-lg-12 col-sm-12 px-2">
-                            <label for="senhaPaciente" class="form-label mt-3">Senha :</label>
-                            <input name="senha" type="password" class="form-control" id="senhaPaciente" placeholder="******"
-                                required>
-                            <div class="invalid-feedback">
-                                Campo senha é obrigatório.
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
 
-                    <!-- Botões Limpar e Enviar-->
-                    <div class="d-flex justify-content-center mb-2">
-                        <button class=" btn mx-2 btnLimpar" type="reset">Limpar</button>
-                        <button class=" btn mx-2 btnEnviar" type="submit">Enviar</button>
-                    </div>
+                            <!-- Select Genero do Paciente -->
+                            <div class="col-lg-6 col-sm-6 p-0">
+                                <label for="generoPaciente" class="form-label mt-3">Gênero</label>
+                                <select class="form-select" id="generoPaciente" name="genero" required>
+                                    <option value="">Escolha ...</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Feminino">Feminino</option>
+                                    <option value="Outros">Outro</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor selecione gênero.
+                                </div>
+                            </div>
+                            </div>
+                            
+
+                            <!-- Input email do Paciente -->
+                            <div class="col-lg-12 col-sm-12 p-0">
+                                <label for="emailPaciente" class="form-label mt-3">Email: <span
+                                        class="text-muted"></span></label>
+                                <input type="email" class="form-control" id="emailPaciente"
+                                    placeholder="you@example.com" name="email" value="" required>
+                                <div class="invalid-feedback">
+                                    Campo email é obrigatório.
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-2 p-0">
+                                <!-- Input Telefone do Paciente -->
+                            <div class="col-lg-6 col-sm-6 p-0">
+                                <label for="telefonePaciente" class="form-label mt-3">Telefone:</label>
+                                <input type="text" class="form-control" id="telefonePaciente"
+                                    placeholder="(DD)x xxxx-xxxx" name="telefone" value="" required>
+                                <div class="invalid-feedback">
+                                    Campo telefone é obrigatório.
+                                </div>
+                            </div>
+                            <!-- Input CPF do Paciente -->
+                            <div class="col-lg-6 col-sm-6 p-0">
+                                <label for="cpfPaciente" class="form-label mt-3">CPF:</label>
+                                <input type="text" class="form-control" id="cpfPaciente" placeholder="Digite o seu CPF" name="cpf" value=""
+                                    required>
+                                <div class="invalid-feedback">
+                                    Campo CPR é obriigatório.
+                                </div>
+                            </div>
+                            </div>
+                            
+                            <!-- Input Usuário do Paciente -->
+                            <div class="col-lg-12 col-sm-12 p-0">
+                                <label for="usuarioPaciente" class="form-label mt-3">Usuário :</label>
+                                <input type="text" class="form-control" id="usuarioPaciente"
+                                    placeholder="Digite o seu usuario" name="usuario" value="" required>
+                                <div class="invalid-feedback">
+                                    Campo usuário é obrigatório.
+                                </div>
+                            </div>
+                            <!-- Input Senha do Paciente -->
+                            <div class="col-lg-12 col-sm-12 p-0">
+                                <label for="senhaPaciente" class="form-label mt-3">Senha :</label>
+                                <input type="password" class="form-control" id="senhaPaciente" placeholder="******" name="senha" value="senha"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Campo senha é obrigatório.
+                                </div>                                                        
+                            </div>
+                            <!-- Input Convênio do Paciente -->
+                            <label for="convenio" class="form-label mt-3">Convênio:</label>
+                                <select class="form-select" id="convenio" name="convenio" required>
+                                    <option value="">Escolha ...</option>
+                                    <option value="Amil">Amil</option>
+                                    <option value="Bradesco">Bradesco</option>
+                                    <option value="Sulamérica">Sulamérica</option>
+                                    <option value="Hapvida">Hapvida</option>
+                                    <option value="Unimed">Unimed</option>
+                                    <option value="Albert E.">Albert E.</option>
+                                    <option value="Outro">Outro</option>
+                                    <option value="Nenhum">Nenhum</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor selecione convênio.
+                                </div>
+                        </div>
+                        <!-- Botões Limpar e Enviar-->
+                        <div class="d-flex justify-content-center mb-2 mt-3">
+                            <button class="btn btn-primary btn-mx-2 btnLimpar " type="reset">Limpar</button>
+                            <button class=" btn btn-success mx-2 btnEnviar" type="submit">Adicionar </button>
+                        </div>
                 </form>
                 <p style="text-align: center; font-size: 12px;">Ao se inscrever você concorda com nossos Termos,
                     Condições e Políticas de Privacidade</p>

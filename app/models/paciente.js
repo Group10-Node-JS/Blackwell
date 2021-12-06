@@ -9,7 +9,8 @@ const Paciente = mongoose.model('paciente', {
     telefone: String,
     cpf: String,
     usuario: String,
-    senha: String
+    senha: String,
+    convenio: String
 })
 
 module.exports = Paciente
