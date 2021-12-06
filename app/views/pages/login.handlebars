@@ -1,0 +1,85 @@
+<body>
+  <div class="container" id="containerPrincipal">
+    <nav class="row">
+      <div class="col d-flex justify-content-end imgLogo">
+        <img
+          src="/img/Frame 169.png"
+          class="img-fluid"
+          alt="logo"
+          title="Blackwelldb_logo"
+        />
+      </div>
+    </nav>
+
+    <div class="row titulo">
+      <h3>Bem vinde de volta</h3>
+      <h1>Faça seu Login</h1>
+      <p class="lead" style="font-size: 12px">
+        Você não possui conta?
+        <a
+          href="/cadastro"
+          style="color: #f25c27; font-family: 'Monteserrat'; font-weight: 900"
+          >FAÇA SEU CADASTRO</a
+        >
+      </p>
+    </div>
+    <section class="row">
+      <form class="formLogin" action="/" method="post">
+        <div class="row w-50">
+          <div class="form-group sm mt-3 mb-3">
+            <label for="usuario">Usuário</label>
+            <input
+              class="form-control"
+              type="text"
+              id="usuario"
+              name="usuario"
+              placeholder="Digite seu usuario"
+            />
+          </div>
+          <!-- div para usuario-->
+          <div class="form-group sm mt-3 mb-3">
+            <label for="senha">Senha</label>
+            <input
+              class="form-control"
+              type="password"
+              id="senha"
+              name="senha"
+              placeholder="Digite sua senha"
+            />
+          </div>
+          <!--div para senha-->
+        </div>
+        <!--div row w-50-->
+        {{!-- <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me" /> Lembrar da senha
+          </label>
+        </div> --}}
+        <!--div button radio-->
+        <div class="botaoLogin">
+          <button class="btn btn-success mt-2 mb-2 px-5">Entrar</button>
+          {{!-- <button class="btn btn-outline-dark mt-2 mb-2">
+            <img src="/img/iconfinder_Google_1298745_1.svg" />
+            Entrar com Gmail
+          </button> --}}
+        </div>
+        <!--div botaoLogin-->
+      </form>
+    </section>
+  </div>
+  <!-- div container-->
+
+  <!-- JavaScript Bundle with Popper -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+  ></script>
+  <script src="/js/script_login.js"></script>
+</body>
+

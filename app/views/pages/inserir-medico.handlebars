@@ -1,0 +1,245 @@
+<!-- Compiled and minified CSS -->
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link rel="stylesheet" href="/css/estilos.css">
+<title>Painel Medico</title>
+<style>
+    label {
+        font-family: "Poppins";
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    form {
+        max-width: 600px;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 40px;
+    }
+
+    @media screen and (max-width: 425px) {
+        form  {
+            max-width: 400px;
+            /* padding: 15px; */
+            background-color: #F6F8FB;
+        }
+    }
+</style>
+
+<body>
+    <main>
+        {{> header}}
+
+        <section class="container-fluid p-0">
+            <div class="row text-center">
+                <h1 class=" title1 p-0">Inserir Médico</h1>
+            </div>
+
+        </section>
+        <section class="container-fluid p-0 mb-5">
+            <div class="row">
+                <div class="col p-0">
+                    
+                    <form class="needs-validation mx-auto" action="/admin/cadastroMedico" method="post" novalidate>
+                        <div class="row ">
+                            
+                            <!-- Input Nome do Médico -->
+                            <div class="col-lg-12 col-sm-12 p-0">
+                                <label for="nomeMedico" class="form-label mt-3"> Nome completo:</label>
+                                <input type="text" class="form-control" id="nomeMedico"
+                                    placeholder="Digite o seu nome completo" name="nome" value="" required>
+                                <div class="invalid-feedback">
+                                    Campo nome é obrigatório.
+                                </div>
+                                
+                            </div>
+
+                            <div class="d-flex gap-2 p-0">
+                                <!-- Select Genero do Médico -->
+                            <div class="col-lg-6 col-sm-12 p-0">
+                                <label for="genero" class="form-label mt-3">Gênero</label>
+                                <select class="form-select" id="genero" name="genero" required>
+                                    <option value="">Escolha ...</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Feminino">Feminino</option>
+                                    <option value="Outros">Outro</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor selecione gênero.
+                                </div>
+                            </div>
+    
+                            <!-- Input CRM -->
+                            <div class="col-lg-6 col-sm-12 p-0">
+                                <label for="crm" class="form-label mt-3">CRM:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text">@</span>
+                                    <input type="text" class="form-control" name="crm" id="crm" placeholder="Digite o seu CRM" value=""
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Campo CRM é obrigatório.
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            
+    
+                            <!-- Input email do Médico -->
+                            <div class="col-lg-12 col-sm-12 mb-3 p-0">
+                                <label for="emailMedico" class="form-label mt-3">Email: </label>
+                                <input type="email" class="form-control" id="emailMedico" name="email" placeholder="you@example.com" value=""
+                                    required>
+                                <div class="invalid-feedback">
+                                    Campo email é obrigatório.
+                                </div>
+                            </div>
+    
+                            <!-- Input endereço do Médico -->
+                            <div class="col-lg-12 col-sm-12 mb-3 p-0">
+                                <label for="enderecoMedico" class="form-label mt-3">Endereço:</label>
+                                <input type="text" class="form-control" id="enderecoMedico" name="enderecoCompleto" placeholder="Digite o seu endereço" value=""
+                                    required>
+                                <div class="invalid-feedback">
+                                    Campo endereço é obrigatório.
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-2 p-0">
+                                <!-- Input telefone do Médico -->
+                            <div class="col-lg-6 col-sm-12 p-0 mb-3">
+                                <label for="telefoneMedico" class="form-label mt-3">Telefone:</label>
+                                <input type="text" class="form-control" id="telefoneMedico" name="telefone" placeholder="(DD)X XXXX-XXXX" value=""
+                                    required>
+                                <div class="invalid-feedback">
+                                    Campo telefone é obrigatório.
+                                </div>
+                            </div>
+    
+                            <!-- Select de Especialidades -->
+                            <div class="col-lg-6 col-sm-12 p-0 mb-3">
+                                <label for="especialidades" class="form-label mt-3">Especialidades:</label>
+                                <select class="form-select" id="especialidades" name="especialidades" required>
+                                    <option value="">Escolha ...</option>
+                                    {{#each especialidades}}
+                                        <option value="{{nome}}">{{nome}}</option>
+                                    {{/each}}
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor selecione a especialidade.
+                                </div>
+                            </div>
+                            </div>
+                            
+                            {{!-- <div class="d-flex gap-2 p-0">
+                                <!-- Input usuário do médico -->
+                            <div class="col-lg-6 col-sm-12 p-0 mb-3">
+                                <label for="usuarioMedico" class="form-label mt-3">Usuário:</label>
+                                <input type="text" class="form-control" id="usuarioMedico" name="usuario"
+                                    placeholder="Digite o seu usuario" value="" required>
+                                <div class="invalid-feedback">
+                                    Campo usuário é obrigatório.
+                                </div>
+                            </div>
+    
+                            <!-- Input senha do Médico -->
+                            <div class="col-lg-6 col-sm-12 p-0 mb-3">
+                                <label for="senhaMedico" class="form-label mt-3">Senha:</label>
+                                <input type="password" class="form-control" id="senhaMedico" name="senha" placeholder="******" value="" required>
+                                <div class="invalid-feedback">
+                                    Campo senha é obrigatório.
+                                </div>
+                            </div>
+                            </div> --}}
+                            
+
+{{!--     
+                            <!-- Select diponibilidade na Segunda -->
+
+    
+                            <!-- Select diponibilidade na Segunda -->
+
+                            <div class="row mt-3 pt-3 text-center">
+                                <h6>Disponibilidade</h6>
+                                <div class="col-lg-4 col-md-6 col-sm-12 p-0 mb-3">
+                                    <label for="segunda" class="form-label">Segunda:</label>
+                                    <select class="form-select" id="segunda" required>
+                                        <option value="0">Escolha ...</option>
+                                        <option>Diurno</option>
+                                        <option>Manhã</option>
+                                        <option>Tarde</option>
+                                    </select>                                
+                                </div>
+    
+                                <!-- Select diponibilidade na Segunda -->
+                                <div class="col-lg-4 col-md-6 col-sm-12 p-0 mb-3">
+                                    <label for="terca" class="form-label">Terça:</label>
+                                    <select class="form-select" id="terca" required>
+                                        <option value="0">Escolha ...</option>
+                                        <option>Diurno</option>
+                                        <option>Manhã</option>
+                                        <option>Tarde</option>
+                                    </select>                                
+                                </div>
+    
+                                <!-- Select diponibilidade na Segunda -->
+                                <div class="col-lg-4 col-md-6 col-sm-12 p-0 mb-3">
+                                    <label for="quarta" class="form-label">Quarta:</label>
+                                    <select class="form-select" id="quarta" required>
+                                        <option value="0">Escolha ...</option>
+                                        <option>Diurno</option>
+                                        <option>Manhã</option>
+                                        <option>Tarde</option>
+                                    </select>                                
+                                </div>
+    
+                                <!-- Select diponibilidade na Segunda -->
+                                <div class="col-lg-4 col-md-6 col-sm-12 p-0 mb-3">
+                                    <label for="quinta" class="form-label">Quinta:</label>
+                                    <select class="form-select" id="quinta" required>
+                                        <option value="0">Escolha ...</option>
+                                        <option>Diurno</option>
+                                        <option>Manhã</option>
+                                        <option>Tarde</option>
+                                    </select>                                
+                                </div>
+                                
+                                <!-- Select diponibilidade na Segunda -->
+                                <div class="col-lg-4 col-md-6 col-sm-12 p-0">
+                                    <label for="sexta" class="form-label">Sexta:</label>
+                                    <select class="form-select" id="sexta" required>
+                                        <option value="0">Escolha ...</option>
+                                        <option>Diurno</option>
+                                        <option>Manhã</option>
+                                        <option>Tarde</option>
+                                    </select>                                
+
+                                </div> --}}
+
+                            </div> 
+
+                        </div>
+                        
+                        <!-- Botões Limpar e Enviar -->
+                        <div class="d-flex justify-content-center mb-2 mt-3">
+                            <button class="btn btn-primary btn-mx-2 btnLimpar " type="reset">Limpar</button>
+                            <button class=" btn btn-success mx-2 btnEnviar" type="submit">Adicionar</button>
+    
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+        <script src="/js/form-validationMedi.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('select').formSelect();
+            });
+        </script>    
+</body>

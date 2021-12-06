@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Cadastro Médico Admin</title>
+
+    <!-- Link para as fontes Montserrat e Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700;900&family=Poppins:wght@100;300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/checkout/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/form-validation.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Iniciando o Modal -->
+    <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog"
+        id="modalSignin">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-5 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    
+                    <!-- Título introdutório -->
+                    <div class="py-2 text-center">
+                        <h4>Admin cadastrando <br> novo Médico</h4>
+                        <p class="lead" style="font-size: 12px;"><a href="#login"
+                                style="color:#F25C27; font-family: 'Monteserrat'; font-weight: 900;">IR PARA LOGIN</a>
+                        </p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+
+                <div class="modal-body p-5 pt-0">
+                    <!-- Abrindo o Formulário de Cadastro -->
+                    <form class="needs-validation" novalidate>
+                        <div class="row ">
+
+                            <!-- Input Nome do Médico -->
+                            <div class="col-lg-12 col-sm-12 px-2">
+                                <label for="nomeMedico" class="form-label mt-3"> Nome completo:</label>
+                                <input type="text" class="form-control" id="nomeMedico"
+                                    placeholder="Digite o seu nome completo" value="" required>
+                                <div class="invalid-feedback">
+                                    Campo nome é obrigatótio.
+                                </div>
+                            </div>
+
+                            <!-- Select Genero do Médico -->
+                            <div class="col-lg-6 col-sm-12 px-2">
+                                <label for="genero" class="form-label mt-3">Genero</label>
+                                <select class="form-select" id="genero" required>
+                                    <option value="">Escolha ...</option>
+                                    <option>Masculino</option>
+                                    <option>Feminino</option>
+                                    <option>Outro</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor selecione genero.
+                                </div>
+                            </div>
+
+                            <!-- Input CRM -->
+                            <div class="col-lg-6 col-sm-12 px-2">
+                                <label for="crm" class="form-label mt-3">CRM:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text">@</span>
+                                    <input type="text" class="form-control" id="crm" placeholder="Digite o seu CRM"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Campo CRM é obrigatório.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Input email do Médico -->
+                            <div class="col-lg-12 col-sm-12 px-2 mb-3">
+                                <label for="emailMedico" class="form-label mt-3">Email: </label>
+                                <input type="email" class="form-control" id="emailMedico" placeholder="you@example.com"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Campo email é obrigatório.
+                                </div>
+                            </div>
+
+                            <!-- Input endereço do Médico -->
+                            <div class="col-lg-12 col-sm-12 px-2 mb-3">
+                                <label for="enderecoMedico" class="form-label mt-3">Endereço:</label>
+                                <input type="text" class="form-control" id="enderecoMedico"
+                                    placeholder="Digite o seu Endereço" required>
+                                <div class="invalid-feedback">
+                                    Campo endereço é obrigatório.
+                                </div>
+                            </div>
+
+                            <!-- Input telefone do Médico -->
+                            <div class="col-lg-6 col-sm-12 px-2 mb-3">
+                                <label for="telefoneMedico" class="form-label mt-3">Telefone:</label>
+                                <input type="text" class="form-control" id="telefoneMedico"
+                                    placeholder="(DD)x xxxx-xxxx" required>
+                                <div class="invalid-feedback">
+                                    Campo telefone é obrigatório.
+                                </div>
+                            </div>
+
+                            <!-- Select de Especialidades -->
+                            <div class="col-lg-6 col-sm-12 px-2 mb-3">
+                                <label for="especialidade" class="form-label mt-3">Especialidade:</label>
+                                <select class="form-select" id="especialidade" required>
+                                    <option value="">Escolha ...</option>
+                                    <option>Acupuntura</option>
+                                    <option>Alergia e Imunologia</option>
+                                    <option>Anestesiologia</option>
+                                    <option>Angiologia</option>
+                                    <option>Cardiologia</option>
+                                    <option>Cirurgia cardiovascular</option>
+                                    <option>Cirurgia da mão</option>
+                                    <option>Cirurgia de cabeça e pescoço</option>
+                                    <option>Cirurgia do aparelho digestivo</option>
+                                    <option>Cirurgia geral</option>
+                                    <option>Cirurgia oncológica</option>
+                                    <option>Cirurgia pediátrica</option>
+                                    <option>Cirurgia plástica</option>
+                                    <option>Cirurgia torácica</option>
+                                    <option>Cirurgia vascular</option>
+                                    <option>Clínica médica</option>
+                                    <option>Coloproctologia</option>
+                                    <option>Dermatologia</option>
+                                    <option>Endocrinologia e metabologia</option>
+                                    <option>Endoscopia</option>
+                                    <option>Gastroenterologia</option>
+                                    <option>Genética médica</option>
+                                    <option>Geriatria</option>
+                                    <option>Ginecologia e obstetrícia</option>
+                                    <option>Hematologia e hemoterapia</option>
+                                    <option>Homeopatia</option>
+                                    <option>Infectologia</option>
+                                    <option>Mastologia</option>
+                                    <option>Medicina de emergência</option>
+                                    <option>Medicina de família e comunidade</option>
+                                    <option>Medicina do trabalho</option>
+                                    <option>Medicina de tráfego</option>
+                                    <option>Medicina esportiva</option>
+                                    <option>Medicina física e reabilitação</option>
+                                    <option>Medicina intensiva</option>
+                                    <option>Medicina legal e perícia médica</option>
+                                    <option>Medicina nuclear</option>
+                                    <option>Medicina preventiva e social</option>
+                                    <option>Nefrologia</option>
+                                    <option>Neurocirurgia</option>
+                                    <option>Neurologia</option>
+                                    <option>Nutrologia</option>
+                                    <option>Oftalmologia</option>
+                                    <option>Oncologia clínica</option>
+                                    <option>Ortopedia e traumatologia</option>
+                                    <option>Otorrinolaringologia</option>
+                                    <option>Patologia</option>
+                                    <option>Patologia clínica/medicina laboratorial</option>
+                                    <option>Pediatria</option>
+                                    <option>Pneumologia</option>
+                                    <option>Psiquiatria</option>
+                                    <option>Radiologia e diagnóstico de imagem</option>
+                                    <option>Radioterapia</option>
+                                    <option>Reumatologia</option>
+                                    <option>Urologia</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor selecione a especialidade.
+                                </div>
+                            </div>
+
+                            <!-- Input usuário do médico -->
+                            <div class="col-lg-6 col-sm-12 px-2 mb-3">
+                                <label for="usuarioMedico" class="form-label mt-3">Usuário:</label>
+                                <input type="text" class="form-control" id="usuarioMedico"
+                                    placeholder="Digite o seu usuario" required>
+                                <div class="invalid-feedback">
+                                    Campo usuário é obrigatório.
+                                </div>
+                            </div>
+
+                            <!-- Input senha do Médico -->
+                            <div class="col-lg-6 col-sm-12 px-2 mb-3">
+                                <label for="senhaMedico" class="form-label mt-3">Senha:</label>
+                                <input type="password" class="form-control" id="senhaMedico" placeholder="******"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Campo senha é obrigatório.
+                                </div>
+                            </div>
+
+                            <!-- Select diponibilidade na Segunda -->
+                            <div class="row mt-3 pt-3 text-center">
+                                <h6>Disponibilidade</h6>
+                                <div class="col-lg-4 col-md-6 col-sm-12 px-2 mb-3">
+                                    <label for="segunda" class="form-label">Segunda:</label>
+                                    <select class="form-select" id="segunda" required>
+                                        <option value="0">Escolha ...</option>
+                                        <option>Diurno</option>
+                                        <option>Manhã</option>
+                                        <option>Tarde</option>
+                                    </select>
+                                </div>
+
+                                <!-- Select diponibilidade na Segunda -->
+                                <div class="col-lg-4 col-md-6 col-sm-12 px-2 mb-3">
+                                    <label for="terca" class="form-label">Terça:</label>
+                                    <select class="form-select" id="terca" required>
+                                        <option value="0">Escolha ...</option>
+                                        <option>Diurno</option>
+                                        <option>Manhã</option>
+                                        <option>Tarde</option>
+                                    </select>
+                                </div>
+
+                                <!-- Select diponibilidade na Segunda -->
+                                <div class="col-lg-4 col-md-6 col-sm-12 px-2 mb-3">
+                                    <label for="quarta" class="form-label">Quarta:</label>
+                                    <select class="form-select" id="quarta" required>
+                                        <option value="0">Escolha ...</option>
+                                        <option>Diurno</option>
+                                        <option>Manhã</option>
+                                        <option>Tarde</option>
+                                    </select>
+                                </div>
+
+                                <!-- Select diponibilidade na Segunda -->
+                                <div class="col-lg-4 col-md-6 col-sm-12 px-2 mb-3">
+                                    <label for="quinta" class="form-label">Quinta:</label>
+                                    <select class="form-select" id="quinta" required>
+                                        <option value="0">Escolha ...</option>
+                                        <option>Diurno</option>
+                                        <option>Manhã</option>
+                                        <option>Tarde</option>
+                                    </select>
+                                </div>
+
+                                <!-- Select diponibilidade na Segunda -->
+                                <div class="col-lg-4 col-md-6 col-sm-12 px-2">
+                                    <label for="sexta" class="form-label">Sexta:</label>
+                                    <select class="form-select" id="sexta" required>
+                                        <option value="0">Escolha ...</option>
+                                        <option>Diurno</option>
+                                        <option>Manhã</option>
+                                        <option>Tarde</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <!-- Botões Limpar e Enviar -->
+                        <div class="d-flex justify-content-center mb-2">
+                            <button class=" btn mx-2 btnLimpar " type="reset">Limpar</button>
+                            <button class=" btn mx-2 btnEnviar" type="submit">Enviar</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <!-- Link Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- Link javascript de validação do formulário -->
+    <script src="/js/form-validationMedi.js"></script>
+
+</body>
+
+</html>

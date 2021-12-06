@@ -1,0 +1,41 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+<header class="py-3 mb-3 mx-2">
+    <div class="container-fluid">
+      <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+
+        {{!-- <form class="col-7 col-md-4 col-lg-3">
+          <input type="search" id="pesquisaGeral" class="form-control border-0 rounded-pill" placeholder="Buscar" aria-label="Search">
+        </form> --}}
+
+        <div class="d-flex align-items-center justify-content-center p-0">
+          <a href="/admin/" style="text-decoration-line: none; color:#268C5C" class="d-flex align-items-center justify-content-center p-0">
+            <i class="material-icons prefix ">home</i>
+            <h4 class=" pb-1 ps-1 m-0">Home</h4>
+          </a>
+        </div>
+
+        <div class="col-5 col-md-8 col-lg-9 dropdown text-end">
+          {{!-- <a href="#" class="text-decoration-none me-3">
+            <img src="../img/Vector.svg" alt="">
+          </a> --}}
+          <a href="#" class=" link-dark text-decoration-none" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/img/AvatarMaker.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          
+          <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="dropdownUser1">
+            {{!-- <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li> --}}
+           
+            <li><a class="dropdown-item" href="/admin/cadastroMedico">Inserir Médico</a></li>
+            <li><a class="dropdown-item" href="/admin/cadastroPaciente">Inserir Paciente</a></li>
+            <li><a class="dropdown-item" href="/admin/listarEspecialidade">Editar Especialidade</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/sair">Sair</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</header>
