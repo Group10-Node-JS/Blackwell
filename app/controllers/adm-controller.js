@@ -3,11 +3,11 @@ const Paciente = require('../models/paciente')
 const Especialidade = require('../models/especialidades')
 
 exports.listagem = async (req, res) => {
-  const medicos = await Medico.find({}).lean().exec()
-  const pacientes = await Paciente.find({}).lean().exec()
-  const especialidades = await Especialidade.find({}).lean().exec()
+  const medicos = await Medico.find({}).lean().sort({nome: 'asc'}).exec()
+  const pacientes = await Paciente.find({}).lean().sort({nome: 'asc'}).exec()
+  const especialidades = await Especialidade.find({}).lean().sort({nome: 'asc'}).exec()
   
-  return res.render('listagem', {medicosDados: JSON.stringify(medicos), pacientesDados: JSON.stringify(pacientes), especialidadesDados: JSON.stringify(especialidades), titulo: 'Admin - Backwell', style:'listagem'})
+  return res.render('listagem', {medicosDados: JSON.stringify(medicos), pacientesDados: JSON.stringify(pacientes), especialidadesDados: JSON.stringify(especialidades), especialidades, titulo: 'Admin - Backwell', style:'listagem'})
 }
 
 exports.perfilMedicoGet = async (req, res) => {
@@ -45,6 +45,7 @@ exports.editarPacienteGet = async (req, res) => {
   return res.render('atualizar-paciente', {pacienteEscolhido, titulo:'Editar Paciente', style:'form-validation'})
 
 }
+
 exports.editarPacientePost = async (req, res) => {
   const pacienteAtualizado = req.body
 
@@ -60,13 +61,13 @@ exports.deletarPaciente = async (req, res) => {
   return res.redirect('/admin/')
 }
 
-// control para página de adicionar pacientes
 exports.cadastroPacienteGet = (req, res) => {
   res.render('inserir-paciente', {style:"estilos", titulo: "Painel Paciente" } )
 }
 
-
 exports.cadastroPacientePost = async (req, res) => {
+  const dataAtual = new Date()
+
   const pacienteExistente = await Paciente.findOne({email: req.body.email, usuario: req.body.usuario, cpf: req.body.cpf}).exec()
 
   if(pacienteExistente != null) {
@@ -77,17 +78,22 @@ exports.cadastroPacientePost = async (req, res) => {
 
   Object.assign(pacienteNovo, req.body)
 
+  pacienteNovo.dataDeCadastro =  `${dataAtual.getFullYear()}-${dataAtual.getMonth() + 1}-0${dataAtual.getDate()}`
+
   await pacienteNovo.save()
 
   return res.redirect('/admin/')
 }
 
-exports.cadastroMedicoGet = (req, res) => {
-  res.render('inserir-medico', {style:"estilos", titulo: "Painel Médico" } )
+exports.cadastroMedicoGet = async (req, res) => {
+  const especialidades = await Especialidade.find({}).lean().sort({nome: 'asc'}).exec()
+
+  return res.render('inserir-medico', {especialidades, style:"estilos", titulo: "Painel Médico" } )
 }
 
-
 exports.cadastroMedicoPost = async (req, res) => {
+  const dataAtual = new Date()
+
   const medicoExistente = await Medico.findOne({crm: req.body.crm}).exec()
 
   if(medicoExistente != null) {
@@ -98,12 +104,70 @@ exports.cadastroMedicoPost = async (req, res) => {
 
   Object.assign(medicoNovo, req.body)
 
+  medicoNovo.dataDeCadastro =  `${dataAtual.getFullYear()}-${dataAtual.getMonth() + 1}-0${dataAtual.getDate()}`
+
   await medicoNovo.save()
 
   return res.redirect('/admin/')
 }
 
 exports.listarEspecialidade = async (req,res) =>{
- const especialidades = await Especialidade.find({}).lean().exec() 
+ const especialidades = await Especialidade.find({}).sort({nome: 'asc'}).exec() 
  return res.render('especialidade',{especialidades:JSON.stringify(especialidades),style:"listagem"})
+}
+
+exports.adicionarEspecialidade = async (req,res) =>{
+  const dataAtual = new Date()
+
+  const especialidadeExistente = await Especialidade.findOne({nome: req.body.nome}).lean().exec()
+
+  if(especialidadeExistente != null) {
+    return res.redirect('/admin/listarEspecialidade')
+  }
+
+  const especialidade = String(req.body.nome);
+  const especialidadeSerial = especialidade.charAt(0).toUpperCase() + especialidade.substring(1);
+
+  const especialidadeDados = {
+    nome: especialidadeSerial,
+    dataDeCadastro: `${dataAtual.getFullYear()}-${dataAtual.getMonth() + 1}-0${dataAtual.getDate()}`
+  }
+
+  const novaEspecialidade = new Especialidade();
+
+  Object.assign(novaEspecialidade, especialidadeDados)
+
+  await novaEspecialidade.save()  
+
+  return res.redirect('/admin/listarEspecialidade')
+}
+
+exports.editarEspecialidade = async (req, res) => {
+  return res.redirect('/admin/listarEspecialidade')
+}
+
+exports.deletarEspecialidade = async (req, res) => {
+  await Especialidade.findByIdAndDelete(req.params.id)
+  return res.redirect('/admin/listarEspecialidade')
+}
+
+exports.buscarEspecialidade = async (req, res) => {
+  const nomeDaEspecialidade = req.query.nome
+  const nomeDaEspecialidadeRegex = new RegExp(nomeDaEspecialidade, "i")
+
+  const especialidadesPesquisadas =  await Especialidade.find({nome: nomeDaEspecialidadeRegex}).sort({nome: 'asc'}).exec()
+
+  res.render('especialidade', {especialidades:JSON.stringify(especialidadesPesquisadas),style:"listagem"})
+}
+
+exports.revogarAcesso = async (req, res) => {
+  const bloqueio = req.params.auth
+
+  if(bloqueio == 'true') {
+    global.tipoUsuario = ""
+  } else {
+    global.tipoUsuario = "USER"
+  }
+
+  return res.end()
 }

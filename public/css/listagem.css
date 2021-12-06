@@ -8,7 +8,7 @@
     padding-left: 35px;
 }
 
-.pesquisaTabela, .pesquisaTabela #pesquisaMedico, .pesquisaTabela #pesquisaPaciente{
+.pesquisaTabela, .pesquisaTabela #pesquisaMedico, .pesquisaTabela #pesquisaPaciente,  .pesquisaTabela #pesquisaEspecialidade{
     background-color: #EFF0F6;
 }
 
@@ -35,7 +35,7 @@
 }
 
 
-#formTabelaMedico section:nth-child(3) select {
+#formTabelaMedico section:nth-child(3) select, #formTabelaPaciente section:nth-child(3) select, #formTabelaEspecialidade section:nth-child(3) select {
     width: 185px !important;
     height: 44px !important;
 
@@ -92,7 +92,7 @@
     height: 2.75rem;
 }
 
-.lista-numero.medico-lista {
+.lista-numero.medico-lista, .lista-numero.paciente-lista {
     margin-right: 8px;
 }
 
@@ -111,7 +111,7 @@
     align-items: center;
 }
 
-.lista-numero.medico-lista a{
+.lista-numero.medico-lista a, .lista-numero.paciente-lista a{
     text-decoration: none;
     color: #000;
 }

@@ -97,55 +97,251 @@
             <div class="row">
                 <h3 class="titulo2 mb-5">Conheça nossos Médicos</h3>
                 <div class="col s12 m12 l8">
+                    <section id="secaoMedico">
+
+                    <section class="bg-white p-4">
+                        <form id="formTabelaMedico" class="d-flex flex-wrap">
+                            <section class="justify-content-center justify-content-md-start col-12 col-md-4 d-flex p-0">
+                                <div class="pesquisaTabela d-flex align-center rounded">
+                                    <input type="search" onkeyup="buscaPorMedico(this)" id="pesquisaMedico" style="padding-left: 10px;" class="form-control border-0" placeholder="Buscar" aria-label="Search">
+                                    <span class="pe-3 align-self-center"><img src="/img/default.svg" alt=""></span>
+                                </div>
+
+                            </section>
+                            <section class="col-none col-md"></section>
+                            <section class="justify-content-center justify-content-md-end col-12 col-md-4 d-flex py-3 p-md-0 justify-content-end">
+                                <select class="rounded" name="Especialidades" onchange="filtroEspecialidade(this)">
+                                    <option value="" disabled selected hidden>Especialidades</option>
+                                    <option value="Todos">Todas Especialidades</option>
+                                    {{#each especialidades}}
+                                        <option value="{{nome}}">{{nome}}</option>
+                                    {{/each}}
+                                </select>
+                            </section>
+                        </form>
+                    </section>
+
                     <div class="table-responsive">
                         <table class="table table-hover mx-auto table-borderless">
                             <thead class="border-top border-bottom">
                                 <tr>
-                                    <th class="py-3">
-                                        <label>
-                                            <input type="checkbox" checked="checked" disabled />
-                                            <span> </span>
-                                          </label>
-                                    </th>
-                                    <th class="py-3">Consultas</th>
                                     <th class="py-3">Médicos</th>
                                     <th class="py-3">Especialidade</th>
-                                    <th class="py-3">Data de realização</th>
+                                    <th class="py-3">CRM</th>
                                 </tr>
                             </thead>
-                            <tbody class=" bg-white">
-                                <tr class="align-middle">
-                                    <td class="py-3">
-                                        <label>
-                                            <input type="checkbox"/>
-                                            <span> </span>
-                                          </label>
-                                    </td>
-                                    <td>
-                                        {{!-- {{#with agendamentos}}
-                                            {{exame}}
-                                        {{/with}} --}}
-                                    </td>
-                                    <td>
-                                        <span>
-                                        {{!-- {{#with medico}}
-                                            {{nome}}
-                                        {{/with}}     --}}
-                                        </span>   
-                                    </td>
-                                    <td>                                      <span>Clínico Geral</span>
-                                        <span>Cirurgia geral</span>
-                                        <span>Pediatria</span>
-                                    </td>
-                                    <td>
-                                        {{!-- {{#with agendamentos}}
-                                        {{dataConsulta}}
-                                        {{/with}} --}}
-                                    </td> 
-                                </tr>
+                            <tbody class=" bg-white" id="medicosDom">
                             </tbody>
                         </table>
                     </div>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+                    <nav class="mt-4 white">
+                        <ul class="pagination justify-content-end" id="paginationDoc">   
+                            <li class="page-item voltarTabela">
+                                <a class="page-link text-white" id="primeiroMedico" href="#paginationDoc">&#171;</a>
+                            </li>
+                            <li class="page-item voltarTabela">
+                                <a class="page-link text-white" id="medicoAnterior" href="#paginationDoc">&lt;</a>
+                            </li>
+    
+                            <li class="page-item my-auto">
+                                <div class="d-flex lista-numero medico-lista" style="margin-top: 20px !important;">
+                                   
+                                </div>
+                            </li>
+
+                            <li class="page-item avancarTabela">
+                                <a class="page-link text-white" id="medicoPosterior" href="#paginationDoc">&gt;</a>
+                            </li>
+                            <li class="page-item avancarTabela">
+                                <a class="page-link text-white" id="ultimoMedico" href="#paginationDoc">&#187;</a>
+                            </li>  
+                        </ul>
+                    </nav>
+                  </section>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script>
+        const medicosDados = JSON.parse('{{{medicosDados}}}')
+        
+        function paginacaoMedicos(database = medicosDados) {
+
+            let itensPorPagina = 5;
+            const estado = {
+                pag: 1,
+                itensPorPagina,
+                pagTotal: Math.ceil(database.length / itensPorPagina),
+                maxBotoesVisiveis: 5
+            }
+
+            const DOM = {
+                get(elemento) {
+                    return document.querySelector(elemento)
+                }
+            }
+
+            const controles = {
+                proximo() {
+                    estado.pag++
+
+                    if(estado.pag > estado.pagTotal) {
+                        estado.pag--
+                    }
+                },
+
+                anterior() {
+                    estado.pag--
+
+                    if(estado.pag < 1) {
+                        estado.pag++
+                    }
+                },
+
+                irPara(pag) {
+                    if(pag < 1) pag = 1
+
+                    estado.pag = +pag
+
+                    if(pag > estado.pagTotal) {
+                        estado.pag = estado.pagTotal
+                    }
+                },
+
+                listeners() {
+                    DOM.get('#primeiroMedico').addEventListener('click', () => {controles.irPara(1); atualizarTudo()})
+                    DOM.get('#ultimoMedico').addEventListener('click', () => {controles.irPara(estado.pagTotal); atualizarTudo()})
+
+                    DOM.get('#medicoAnterior').addEventListener('click', () => {controles.anterior(); atualizarTudo()})
+                    DOM.get('#medicoPosterior').addEventListener('click', () => {controles.proximo(); atualizarTudo()})
+                },
+            }
+
+            const lista = {
+                criar(item) {
+                    const itemMedico = `
+                        <tr class="medicoItem align-middle">
+                            <td class="py-3">
+                               <a href="/admin/medico/${item._id}" style="text-decoration:none; font-family:'Poppins'; font-weight:bold; color: #192026"
+                               onMouseOver="this.style.color='#268C5C'"
+                               onMouseOut="this.style.color='#192026'"
+                               >${item.nome}</a>
+                            </td>
+                            <td>
+                                <span class="especialidade">${item.especialidades}</span>
+                            </td>
+                            <td>
+                                ${item.crm}
+                            </td>
+                        </tr>
+                        `
+                    DOM.get('#medicosDom').insertAdjacentHTML("beforeend", itemMedico)
+                },
+
+                atualizar() {
+                    DOM.get('#medicosDom').innerHTML = ''
+
+                    let pag = estado.pag - 1
+                    let inicio = pag * estado.itensPorPagina
+                    let fim = inicio + estado.itensPorPagina
+                    
+                    let listaCortada = database.slice(inicio, fim)
+
+                    listaCortada.forEach(lista.criar)
+                }
+            }
+            
+            const botoes = {
+                criar(numero) {
+                    const botao = document.createElement('a')
+
+                    botao.setAttribute('href', "#paginationDoc")
+
+                    botao.classList.add('page-link,text-dark')
+
+                    /*const botao = `
+                    <a onclick="" class="page-link text-dark" href="#">${numero}</a>
+                    `*/
+
+                    botao.innerHTML = numero
+
+                    if(estado.pag == numero) {
+                        botao.classList.add('active')
+                    }
+
+                    botao.addEventListener('click', (event) => {
+                        const pagina = event.target.innerText
+
+                        controles.irPara(pagina)
+                        atualizarTudo()
+                    })
+
+                    DOM.get('.lista-numero.medico-lista').appendChild(botao)
+
+
+                },
+
+                atualizar() {
+                    DOM.get('.lista-numero.medico-lista').innerHTML = ""
+                    const {maxEsquerda, maxDireita} = botoes.botoesNumVisiveis()
+
+                    for(let pagina = maxEsquerda; pagina <= maxDireita; pagina++) {
+                        botoes.criar(pagina)
+                    }
+                },
+
+                botoesNumVisiveis() {
+                    let maxEsquerda = (estado.pag - Math.floor(estado.maxBotoesVisiveis / 2))
+                    let maxDireita = (estado.pag + Math.floor(estado.maxBotoesVisiveis / 2))
+
+                    if(maxEsquerda < 1) {
+                        maxEsquerda = 1
+                        maxDireita = estado.maxBotoesVisiveis
+                    }
+
+                    if(maxDireita > estado.pagTotal) {
+                        maxEsquerda = estado.pagTotal - (estado.maxBotoesVisiveis - 1)
+                        maxDireita = estado.pagTotal
+
+                        if(maxEsquerda < 1) maxEsquerda = 1
+                    }
+
+                    return {maxEsquerda, maxDireita}
+                }
+            }
+
+            function atualizarTudo() {
+                lista.atualizar()
+                botoes.atualizar()
+            }
+
+            function iniciar() {
+                atualizarTudo()
+                controles.listeners()
+            }
+            iniciar();
+
+        }
+        paginacaoMedicos();
+
+        function filtroEspecialidade(opcao) {
+            let valor = opcao.value;
+
+            if(valor == "Todos") {
+                paginacaoMedicos();
+            } else {
+                const filtro = medicosDados.filter(medico => medico.especialidades == String(valor))
+                paginacaoMedicos(filtro);
+            }
+        }
+
+        function buscaPorMedico(opcao) {
+            let valor = opcao.value;
+
+            let regexNome = new RegExp(valor, "g")
+            
+            const filtro = medicosDados.filter(medico => medico.nome.search(regexNome) !== -1 || medico.especialidades.search(regexNome) !== -1)
+            paginacaoMedicos(filtro);
+        }
+    </script>
+
 </body>

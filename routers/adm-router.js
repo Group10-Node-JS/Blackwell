@@ -31,5 +31,13 @@ router.get('/medico/:id', admController.perfilMedicoGet)
 
 router.get('/listarEspecialidade', admController.listarEspecialidade)
 
+router.post('/adicionarEspecialidade', admController.adicionarEspecialidade)
+
+router.get('/deletarEspecialidade/:id', admController.deletarEspecialidade)
+
+router.get('/buscarEspecialidade', admController.buscarEspecialidade)
+
+router.get('/revogarAcesso/:auth', admController.revogarAcesso)
+
 
 module.exports = router

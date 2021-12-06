@@ -10,7 +10,8 @@ const Paciente = mongoose.model('paciente', {
     cpf: String,
     usuario: String,
     senha: String,
-    convenio: String
+    convenio: String,
+    dataDeCadastro: String,
 })
 
 module.exports = Paciente
