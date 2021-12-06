@@ -9,7 +9,7 @@ exports.cadastroGet = (req, res) => {
 exports.cadastroPost = async (req, res) => {
   const dataAtual = new Date()
 
-  const pacienteExistente = await Paciente.findOne({email: req.body.email, usuario: req.body.usuario, cpf: req.body.cpf}).exec()
+  const pacienteExistente = await Paciente.findOne({cpf: req.body.cpf}).exec()
 
   if(pacienteExistente != null) {
     return res.render('cadastro-pacientes', {mensagem: 'Usuário já existente', titulo: 'Cadastro de Pacientes', style: 'form-validation'})
