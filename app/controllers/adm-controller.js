@@ -68,7 +68,7 @@ exports.cadastroPacienteGet = (req, res) => {
 exports.cadastroPacientePost = async (req, res) => {
   const dataAtual = new Date()
 
-  const pacienteExistente = await Paciente.findOne({email: req.body.email, usuario: req.body.usuario, cpf: req.body.cpf}).exec()
+  const pacienteExistente = await Paciente.findOne({cpf: req.body.cpf}).exec()
 
   if(pacienteExistente != null) {
     return res.render('inserir-paciente', {mensagem: 'Usuário já existente', style: 'form-validation', titulo: 'Cadastro de Pacientes'})
