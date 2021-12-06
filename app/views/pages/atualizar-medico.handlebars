@@ -53,8 +53,9 @@
                                 </div>
                                 
                             </div>
-    
-                            <!-- Select Genero do Médico -->
+
+                            <div class="d-flex gap-2 p-0">
+                                <!-- Select Genero do Médico -->
                             <div class="col-lg-6 col-sm-12 p-0">
                                 <label for="genero" class="form-label mt-3">Gênero</label>
                                 <select class="form-select" id="genero" name="genero" required>
@@ -80,6 +81,8 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
+                            
     
                             <!-- Input email do Médico -->
                             <div class="col-lg-12 col-sm-12 mb-3 p-0">
@@ -100,8 +103,9 @@
                                     Campo endereço é obrigatório.
                                 </div>
                             </div>
-    
-                            <!-- Input telefone do Médico -->
+
+                            <div class="d-flex gap-2 p-0">
+                                <!-- Input telefone do Médico -->
                             <div class="col-lg-6 col-sm-12 p-0 mb-3">
                                 <label for="telefoneMedico" class="form-label mt-3">Telefone:</label>
                                 <input type="text" class="form-control" id="telefoneMedico" name="telefone" placeholder="(DD)x xxxx-xxxx" value="{{telefone}}"
@@ -113,9 +117,9 @@
     
                             <!-- Select de Especialidades -->
                             <div class="col-lg-6 col-sm-12 p-0 mb-3">
-                                <label for="especialidade" class="form-label mt-3">Especialidade:</label>
-                                <select class="form-select" id="especialidade" name="especialidade" required>
-                                    <option value="{{especialidade}}">{{especialidade}}</option>
+                                <label for="especialidades" class="form-label mt-3">Especialidades:</label>
+                                <select class="form-select" id="especialidades" name="especialidades" required>
+                                    <option value="{{especialidades}}">{{especialidades}}</option>
                                     <option>Acupuntura</option>
                                     <option>Alergia e Imunologia</option>
                                     <option>Anestesiologia</option>
@@ -176,8 +180,11 @@
                                     Por favor selecione a especialidade.
                                 </div>
                             </div>
-    
-                            <!-- Input usuário do médico -->
+                            </div>
+                            
+
+                            {{!-- <div class="d-flex gap-2 p-0">
+                                <!-- Input usuário do médico -->
                             <div class="col-lg-6 col-sm-12 p-0 mb-3">
                                 <label for="usuarioMedico" class="form-label mt-3">Usuário:</label>
                                 <input type="text" class="form-control" id="usuarioMedico" name="usuario"
@@ -195,6 +202,8 @@
                                     Campo senha é obrigatório.
                                 </div>
                             </div>
+                            </div> --}}
+                            
                             {{!--     
                             <!-- Select diponibilidade na Segunda -->
                             <div class="row mt-3 pt-3 text-center">
