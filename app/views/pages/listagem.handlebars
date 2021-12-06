@@ -240,7 +240,10 @@
                     const itemMedico = `
                         <tr class="medicoItem align-middle">
                             <td class="py-3">
-                               <a href="/admin/medico/${item._id}">${item.nome}</a>
+                               <a href="/admin/medico/${item._id}" style="text-decoration:none; font-family:'Poppins'; font-weight:bold; color: #192026"
+                               onMouseOver="this.style.color='#268C5C'"
+                               onMouseOut="this.style.color='#192026'"
+                               >${item.nome}</a>
                             </td>
                             <td>
                                 ${item.data}
@@ -254,8 +257,8 @@
                            
                             <td class="acoes">
                               
-                                <a href="/admin/editarMedico/${item._id}"><i class="material-icons prefix">create</i></a>
-                                <a href="/admin/deletarMedico/${item._id}"><i class="material-icons prefix">delete</i></a>
+                                <a href="/admin/editarMedico/${item._id}"><i class="material-icons prefix" style="color:#198754">create</i></a>
+                                <a href="/admin/deletarMedico/${item._id}"><i class="material-icons prefix" style="color:#198754">delete</i></a>
 
                             </td>
                         </tr>
@@ -422,8 +425,8 @@
                                 </div> 
                             </td>
                             <td class="acoes">
-                                <a href="/admin/editarPaciente/${item._id}"><i class="material-icons prefix">create</i></a>
-                                <a href="/admin/deletarPaciente/${item._id}"><i class="material-icons prefix">delete</i></a>
+                                <a href="/admin/editarPaciente/${item._id}"><i class="material-icons prefix" style="color:#198754">create</i></a>
+                                <a href="/admin/deletarPaciente/${item._id}"><i class="material-icons prefix" style="color:#198754">delete</i></a>
                             </td>
 
                         </tr>
