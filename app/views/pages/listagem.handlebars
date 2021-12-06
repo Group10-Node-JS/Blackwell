@@ -374,7 +374,7 @@
 
             let regexNome = new RegExp(valor, "g")
             
-            const filtro = medicosDados.filter(medico => medico.nome.search(regexNome) !== -1 || medico.especialidades.search(regexNome) !== -1)
+            const filtro = medicosDados.filter(medico => medico.nome.search(regexNome) !== -1 || String(medico.especialidades).search(regexNome) !== -1)
             paginacaoMedicos(filtro);
         }
 
