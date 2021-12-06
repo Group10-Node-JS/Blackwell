@@ -7,6 +7,6 @@ router.get('/cadastro', pacienteController.cadastroGet)
 
 router.post('/cadastro', pacienteController.cadastroPost)
 
-router.get('/perfil', User, pacienteController.perfilGet)
+router.get('/perfil/:id', User, pacienteController.perfilGet)
 
 module.exports = router

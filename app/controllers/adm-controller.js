@@ -102,3 +102,8 @@ exports.cadastroMedicoPost = async (req, res) => {
 
   return res.redirect('/admin/')
 }
+
+exports.listarEspecialidade = async (req,res) =>{
+ const especialidades = await Especialidade.find({}).lean().exec() 
+ return res.render('especialidade',{especialidades:JSON.stringify(especialidades),style:"listagem"})
+}
