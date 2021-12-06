@@ -11,7 +11,7 @@ exports.loginPost = async (req, res) => {
   if(paciente != null) {
     global.tipoUsuario = "USER"
 
-    return res.redirect('/perfil')
+    return res.redirect(`/perfil/${paciente._id}`)
   }
 
   const admin = await Adm.findOne({usuario: req.body.usuario, senha: req.body.senha}).exec();

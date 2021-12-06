@@ -19,9 +19,11 @@ exports.cadastroPost = async (req, res) => {
 
   global.tipoUsuario = "USER"
 
-  return res.redirect('/perfil')
+  return res.redirect(`/perfil/${pacienteNovo._id}`)
 }
 
-exports.perfilGet = (req, res) => {
-  res.render('painel-paciente');
+exports.perfilGet = async (req, res) => {
+  const id = req.params.id
+  const paci = await Paciente.findById(id).exec()
+  res.render('painel-paciente', {paci});
 }
