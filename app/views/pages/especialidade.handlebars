@@ -7,32 +7,36 @@
 
         <div class="container">
             <main class="text-center">
-                <section id="secaoMedico">
+                <section id="secaoEspecialidade">
                     <h1 class="titulos text-center fw-bold my-4 my-md-5 pt-1">Lista de Especialidades</h1>
 
                     <section class="bg-white p-4">
-                        <form id="formTabelaMedico" class="d-flex flex-wrap" action="#">
-                            <section
-                                class="d-flex align-content-center justify-content-center justify-content-md-start col-12 col-md-4 p-0">
-                                <div class="col-lg-12 col-sm-12 p-0 my-auto pe-3">
-                                    <input type="text" class="form-control my-auto" id="nomeEspecialidade"
-                                        placeholder="Digite o nome da especialidade" name="especialidade" value="">
-                                </div>
-                                <div class="d-flex justify-content-center mb-2 mt-2">
-                                    <button class="btn btn-primary btn-mx-2 btnLimpar " type="reset">Limpar</button>
-                                    <button class=" btn btn-success mx-2 btnEnviar" type="submit">Adicionar</button>
-                                </div>
-                            </section>
-                            <section class="col-none col-md"></section>
+                        <div id="formTabelaEspecialidade" class="d-flex flex-wrap">
+                            <form action="/admin/adicionarEspecialidade" method="post" class="col-12 col-md-8 p-0">
+                                <section
+                                    class="d-flex flex-column flex-md-row align-content-center justify-content-center justify-content-md-start col-12 col-md-8 p-0">
+                                    <div class="col-12 col-md-6 p-0 my-auto pe-3">
+                                        <input type="text" class="form-control my-auto" id="nomeEspecialidade"
+                                            placeholder="Digite o nome da especialidade" name="nome" required>
+                                    </div>
+                                    <div class="d-flex justify-content-center mb-2 mt-2">
+                                        <button class="btn btn-primary btn-mx-2 btnLimpar " type="reset">Limpar</button>
+                                        <button class=" btn btn-success mx-2 btnEnviar" type="submit">Adicionar</button>
+                                    </div>
+                                </section>
+                            </form>
+                                {{!-- <section class="col-none col-md"></section> --}}
                             <section
                                 class="justify-content-center justify-content-md-end col-12 col-md-4 d-flex py-3 p-md-0 justify-content-end">
                                 <div class="pesquisaTabela d-flex align-center rounded">
-                                    <input type="search" id="pesquisaMedico" class="form-control border-0"
-                                        placeholder="Buscar" aria-label="Search">
-                                    <span class="pe-3 align-self-center"><img src="../img/default.svg" alt=""></span>
+                                    <form action="/admin/buscarEspecialidade" class="d-flex">
+                                    <input type="search" id="pesquisaEspecialidade" class="form-control border-0"
+                                        placeholder="Buscar" aria-label="Search" name="nome">
+                                    </form>
+                                    <span class="pe-3 align-self-center"><img src="/img/default.svg" alt=""></span>
                                 </div>
                             </section>
-                        </form>
+                        </div>
                     </section>
                     <div class="table-responsive">
                         <table class="table table-hover mx-auto table-borderless">
@@ -43,36 +47,20 @@
                                     <th class="py-3">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody class=" bg-white" id="medicosDom">
 
-
-                            <tbody class=" bg-white">
-                                <tr class="align-middle">
-
-                                    <td>
-                                        06/12/21
-                                    </td>
-                                    <td>
-                                        Clínica médica
-                                    </td>
-                                   
-                                    <td>                                      
-                                              <a href=""><i class="material-icons prefix">create</i></a>
-                                              <a href=""><i class="material-icons prefix">delete</i></a>
-                                    </td>             
-                                </tr>
-                            
+                            <tbody class=" bg-white" id="especialidadesDom">
+            
                             </tbody>
                         </table>
                     </div>
 
                     <nav class="mt-4">
-                        <ul class="pagination justify-content-end" id="paginationDoc">
+                        <ul class="pagination justify-content-end" id="paginationEsp">
                             <li class="page-item voltarTabela">
-                                <a class="page-link text-white" id="primeiroMedico" href="#">&#171;</a>
+                                <a class="page-link text-white" id="primeiraEspecialidade" href="#">&#171;</a>
                             </li>
                             <li class="page-item voltarTabela">
-                                <a class="page-link text-white" id="medicoAnterior" href="#">&lt;</a>
+                                <a class="page-link text-white" id="especialidadeAnterior" href="#">&lt;</a>
                             </li>
 
                             <li class="page-item my-auto">
@@ -80,10 +68,10 @@
                             </li>
 
                             <li class="page-item avancarTabela">
-                                <a class="page-link text-white" id="medicoPosterior" href="#">&gt;</a>
+                                <a class="page-link text-white" id="especialidadePosterior" href="#">&gt;</a>
                             </li>
                             <li class="page-item avancarTabela">
-                                <a class="page-link text-white" id="ultimoMedico" href="#">&#187;</a>
+                                <a class="page-link text-white" id="ultimaEspecialidade" href="#">&#187;</a>
                             </li>
                         </ul>
                     </nav>
@@ -99,17 +87,15 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script>
-        const medicosDados = JSON.parse('{{{medicosDados}}}')
+        const especialidadesDados = JSON.parse('{{{especialidades}}}')
 
-        const especialidadesDados = JSON.parse('{{{especialidadesDados}}}')
-
-        function paginacaoMedicos() {
+        function paginacaoEspecialidades() {
 
             let itensPorPagina = 10;
             const estado = {
                 pag: 1,
                 itensPorPagina,
-                pagTotal: Math.ceil(medicosDados.length / itensPorPagina),
+                pagTotal: Math.ceil(especialidadesDados.length / itensPorPagina),
                 maxBotoesVisiveis: 5
             }
 
@@ -147,45 +133,44 @@
                 },
 
                 listeners() {
-                    DOM.get('#primeiroMedico').addEventListener('click', () => { controles.irPara(1); atualizarTudo() })
-                    DOM.get('#ultimoMedico').addEventListener('click', () => { controles.irPara(estado.pagTotal); atualizarTudo() })
+                    DOM.get('#primeiraEspecialidade').addEventListener('click', () => { controles.irPara(1); atualizarTudo() })
+                    DOM.get('#ultimaEspecialidade').addEventListener('click', () => { controles.irPara(estado.pagTotal); atualizarTudo() })
 
-                    DOM.get('#medicoAnterior').addEventListener('click', () => { controles.anterior(); atualizarTudo() })
-                    DOM.get('#medicoPosterior').addEventListener('click', () => { controles.proximo(); atualizarTudo() })
+                    DOM.get('#especialidadeAnterior').addEventListener('click', () => { controles.anterior(); atualizarTudo() })
+                    DOM.get('#especialidadePosterior').addEventListener('click', () => { controles.proximo(); atualizarTudo() })
                 },
             }
 
             const lista = {
                 criar(item) {
-                    const itemMedico = `
-                        <tr class="medicoItem align-middle">
+                    const itemEspecialidade = `
+                        <tr class="especialidadeItem align-middle">
                            
                             <td>
-                                ${item.data}
+                                ${item.dataDeCadastro}
                             </td>
                             <td>
-                                <span class="especialidade">${item.especialidade}</span>
+                                <span class="especialidade">${item.nome}</span>
                             </td>
                            
                             <td class="acoes">
                               
-                                <a href="/admin/editarMedico/${item._id}"><i class="material-icons prefix">create</i></a>
-                                <a href="/admin/deletarMedico/${item._id}"><i class="material-icons prefix">delete</i></a>
+                                <a style="color:#F25D27" href="/admin/deletarEspecialidade/${item._id}"><i class="material-icons prefix">delete</i></a>
 
                             </td>
                         </tr>
                         `
-                    DOM.get('#medicosDom').insertAdjacentHTML("beforeend", itemMedico)
+                    DOM.get('#especialidadesDom').insertAdjacentHTML("beforeend", itemEspecialidade)
                 },
 
                 atualizar() {
-                    DOM.get('#medicosDom').innerHTML = ''
+                    DOM.get('#especialidadesDom').innerHTML = ''
 
                     let pag = estado.pag - 1
                     let inicio = pag * estado.itensPorPagina
                     let fim = inicio + estado.itensPorPagina
 
-                    let listaCortada = medicosDados.slice(inicio, fim)
+                    let listaCortada = especialidadesDados.slice(inicio, fim)
 
                     listaCortada.forEach(lista.criar)
                 }
@@ -257,7 +242,7 @@
             iniciar();
 
         }
-        paginacaoMedicos();
+        paginacaoEspecialidades();
 
 
     </script>

@@ -7,7 +7,7 @@ module.exports = {
         }
     },
 
-    User: function (req, res, next) {
+    User: async function (req, res, next) {
         if(global.tipoUsuario == "USER") {
             return next();
         } else {

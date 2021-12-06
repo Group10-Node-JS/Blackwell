@@ -34,7 +34,7 @@
                         <form id="formTabelaMedico" class="d-flex flex-wrap">
                             <section class="justify-content-center justify-content-md-start col-12 col-md-4 d-flex p-0">
                                 <div class="pesquisaTabela d-flex align-center rounded">
-                                    <input type="search" id="pesquisaMedico" class="form-control border-0" placeholder="Buscar" aria-label="Search">
+                                    <input type="search" onkeyup="buscaPorMedico(this)" id="pesquisaMedico" class="form-control border-0" placeholder="Buscar" aria-label="Search">
                                     <span class="pe-3 align-self-center"><img src="../img/default.svg" alt=""></span>
                                 </div>
                                 <a type="button" class="btn" id="adicionarMedico" href="/admin/cadastroMedico"><span>+</span></a>
@@ -46,10 +46,12 @@
                                     <option value="unimed">Unimed</option>
                                     <option value="cassems">Cassems</option>
                                 </select> --}}
-                                <select class="rounded" name="status" id="">
-                                    <option value="" disabled selected hidden>Status</option>
-                                    <option value="ativo">Ativo</option>
-                                    <option value="inativo">Inativo</option>
+                                <select class="rounded" name="Especialidades" onchange="filtroEspecialidade(this)">
+                                    <option value="" disabled selected hidden>Especialidades</option>
+                                    <option value="Todos">Todas Especialidades</option>
+                                    {{#each especialidades}}
+                                        <option value="{{nome}}">{{nome}}</option>
+                                    {{/each}}
                                 </select>
                             </section>
                         </form>
@@ -104,17 +106,22 @@
                         <form id="formTabelaPaciente" class="d-flex flex-wrap">
                             <section class="justify-content-center justify-content-md-start col-12 col-md-4 d-flex p-0">
                                 <div class="pesquisaTabela d-flex align-center rounded">
-                                    <input type="search" id="pesquisaPaciente" class="form-control border-0" placeholder="Buscar" aria-label="Search">
+                                    <input onkeyup="buscaPorPaciente(this)" type="search" id="pesquisaPaciente" class="form-control border-0" placeholder="Buscar" aria-label="Search">
                                     <span class="pe-3 align-self-center"><img src="/img/default.svg" alt=""></span>
                                 </div>
                                 <a type="button" class="btn" id="adicionarPaciente" href="/admin/cadastroPaciente"><span>+</span></a>
                             </section>
                             <section class="col-none col-md"></section>
                             <section class="justify-content-center justify-content-md-end col-12 col-md-4 d-flex py-3 p-md-0 justify-content-end">
-                                <select class="me-4 rounded" name="convenio" id="">
+                                <select onchange="filtroConvenio(this)" class="rounded" name="convenio" id="">
                                     <option value="" disabled selected hidden>Convênio</option>
-                                    <option value="unimed">Unimed</option>
-                                    <option value="cassems">Cassems</option>
+                                    <option value="Todos">Todos os convênios</option>
+                                    <option value="Amil">Amil</option>
+                                    <option value="Bradesco">Bradesco</option>
+                                    <option value="Sulamérica">Sulamérica</option>
+                                    <option value="Hapvida">Hapvida</option>
+                                    <option value="Unimed">Unimed</option>
+                                    <option value="Albert E.">Albert E.</option>
                                 </select>
                                 {{!-- <select class="rounded" name="status" id="">
                                     <option value="" disabled selected hidden>Status</option>
@@ -134,7 +141,6 @@
                                     <th class="py-3">Convênio</th>
                                     <th class="py-3">Telefone</th>
                                     {{!-- <th class="py-3">Situação</th> --}}
-                                    <th class="py-3">Acesso</th>
                                     <th class="py-3">Ações</th>
                                 </tr>
                             </thead>
@@ -147,10 +153,10 @@
                     <nav class="mt-4">
                         <ul class="pagination justify-content-end">   
                             <li class="page-item voltarTabela">
-                                <a class="page-link text-white" id="primeiroPaciente" href="#">&#171;</a>
+                                <a class="page-link text-white" id="primeiroPaciente" href="#pacientesDom">&#171;</a>
                             </li>
                             <li class="page-item voltarTabela">
-                                <a class="page-link text-white" id="pacienteAnterior" href="#">&lt;</a>
+                                <a class="page-link text-white" id="pacienteAnterior" href="#pacientesDom">&lt;</a>
                             </li>
     
                             <li class="page-item my-auto">
@@ -160,10 +166,10 @@
                             </li>
 
                             <li class="page-item avancarTabela">
-                                <a class="page-link text-white" id="pacientePosterior" href="#">&gt;</a>
+                                <a class="page-link text-white" id="pacientePosterior" href="#pacientesDom">&gt;</a>
                             </li>
                             <li class="page-item avancarTabela">
-                                <a class="page-link text-white" id="ultimoPaciente" href="#">&#187;</a>
+                                <a class="page-link text-white" id="ultimoPaciente" href="#pacientesDom">&#187;</a>
                             </li>  
                         </ul>
                     </nav>
@@ -183,13 +189,13 @@
 
         const especialidadesDados = JSON.parse('{{{especialidadesDados}}}')
         
-        function paginacaoMedicos() {
+        function paginacaoMedicos(database = medicosDados) {
 
             let itensPorPagina = 5;
             const estado = {
                 pag: 1,
                 itensPorPagina,
-                pagTotal: Math.ceil(medicosDados.length / itensPorPagina),
+                pagTotal: Math.ceil(database.length / itensPorPagina),
                 maxBotoesVisiveis: 5
             }
 
@@ -246,7 +252,7 @@
                                >${item.nome}</a>
                             </td>
                             <td>
-                                ${item.data}
+                                ${item.dataDeCadastro}
                             </td>
                             <td>
                                 <span class="especialidade">${item.especialidades}</span>
@@ -258,7 +264,7 @@
                             <td class="acoes">
                               
                                 <a href="/admin/editarMedico/${item._id}"><i class="material-icons prefix" style="color:#198754">create</i></a>
-                                <a href="/admin/deletarMedico/${item._id}"><i class="material-icons prefix" style="color:#198754">delete</i></a>
+                                <a href="/admin/deletarMedico/${item._id}"><i class="material-icons prefix" style="color:#F25D27">delete</i></a>
 
                             </td>
                         </tr>
@@ -273,7 +279,7 @@
                     let inicio = pag * estado.itensPorPagina
                     let fim = inicio + estado.itensPorPagina
                     
-                    let listaCortada = medicosDados.slice(inicio, fim)
+                    let listaCortada = database.slice(inicio, fim)
 
                     listaCortada.forEach(lista.criar)
                 }
@@ -352,12 +358,32 @@
         }
         paginacaoMedicos();
 
-        function paginacaoPacientes() {
+        function filtroEspecialidade(opcao) {
+            let valor = opcao.value;
+
+            if(valor == "Todos") {
+                paginacaoMedicos();
+            } else {
+                const filtro = medicosDados.filter(medico => medico.especialidades == String(valor))
+                paginacaoMedicos(filtro);
+            }
+        }
+
+        function buscaPorMedico(opcao) {
+            let valor = opcao.value;
+
+            let regexNome = new RegExp(valor, "g")
+            
+            const filtro = medicosDados.filter(medico => medico.nome.search(regexNome) !== -1 || medico.especialidades.search(regexNome) !== -1)
+            paginacaoMedicos(filtro);
+        }
+
+        function paginacaoPacientes(database = pacientesDados) {
             let itensPorPagina = 5;
             const estado = {
                 pag: 1,
                 itensPorPagina,
-                pagTotal: Math.ceil(pacientesDados.length / itensPorPagina),
+                pagTotal: Math.ceil(database.length / itensPorPagina),
                 maxBotoesVisiveis: 5
             }
 
@@ -408,30 +434,30 @@
                     const itemPaciente = `
                         <tr class="align-middle">
                             <td class="py-3">
-                                <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
                                 ${item.nome}
                                 <a
                             </td>
                             <td>
-                                ${item.data}
+                                ${item.dataDeCadastro}
                             </td>
                             <td>${item.convenio}</td>
                             <td>
                                 ${item.telefone}
                             </td>
-                            <td>
-                                <div class="form-check form-switch d-flex justify-content-center">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                                </div> 
-                            </td>
+                           
                             <td class="acoes">
                                 <a href="/admin/editarPaciente/${item._id}"><i class="material-icons prefix" style="color:#198754">create</i></a>
-                                <a href="/admin/deletarPaciente/${item._id}"><i class="material-icons prefix" style="color:#198754">delete</i></a>
+                                <a href="/admin/deletarPaciente/${item._id}"><i class="material-icons prefix" style="color:#F25D27">delete</i></a>
                             </td>
 
                         </tr>
                         `
                     DOM.get('#pacientesDom').insertAdjacentHTML("beforeend", itemPaciente)
+                     /*<td>
+                        <div class="form-check form-switch d-flex justify-content-center">
+                            <input onchange="checarAutorizacao(this)" class="form-check-input" type="checkbox" role="switch" id=${item._id}>
+                        </div> 
+                    </td>*/
                 },
 
                 atualizar() {
@@ -441,7 +467,7 @@
                     let inicio = pag * estado.itensPorPagina
                     let fim = inicio + estado.itensPorPagina
                     
-                    let listaCortada = pacientesDados.slice(inicio, fim)
+                    let listaCortada = database.slice(inicio, fim)
 
                     listaCortada.forEach(lista.criar)
                 }
@@ -451,7 +477,7 @@
                 criar(numero) {
                     const botao = document.createElement('a')
 
-                    botao.setAttribute('href', "#")
+                    botao.setAttribute('href', "#pacientesDom")
 
                     botao.classList.add('page-link,text-dark')
 
@@ -518,5 +544,33 @@
             iniciar();
         }
         paginacaoPacientes();
+
+        function filtroConvenio(opcao) {
+            let valor = opcao.value;
+
+            if(valor == "Todos") {
+                paginacaoPacientes();
+            } else {
+                const filtro = pacientesDados.filter(paciente => paciente.convenio == String(valor))
+                paginacaoPacientes(filtro);
+            }
+        }
+
+        function buscaPorPaciente(opcao) {
+            let valor = opcao.value;
+
+            let regexNome = new RegExp(valor, "g")
+            
+            const filtro = pacientesDados.filter(paciente => paciente.nome.search(regexNome) !== -1)
+            paginacaoPacientes(filtro);
+        }
+    
+        function checarAutorizacao(botao) {
+            //const idUsuario = botao.id
+            const autorizacao = botao.checked
+            
+            fetch(`/admin/revogarAcesso/${autorizacao}`)
+        }
+    
     </script>
 </body>

@@ -120,61 +120,9 @@
                                 <label for="especialidades" class="form-label mt-3">Especialidades:</label>
                                 <select class="form-select" id="especialidades" name="especialidades" required>
                                     <option value="">Escolha ...</option>
-                                    <option>Acupuntura</option>
-                                    <option>Alergia e Imunologia</option>
-                                    <option>Anestesiologia</option>
-                                    <option>Angiologia</option>
-                                    <option>Cardiologia</option>
-                                    <option>Cirurgia cardiovascular</option>
-                                    <option>Cirurgia da mão</option>
-                                    <option>Cirurgia de cabeça e pescoço</option>
-                                    <option>Cirurgia do aparelho digestivo</option>
-                                    <option>Cirurgia geral</option>
-                                    <option>Cirurgia oncológica</option>
-                                    <option>Cirurgia pediátrica</option>
-                                    <option>Cirurgia plástica</option>
-                                    <option>Cirurgia torácica</option>
-                                    <option>Cirurgia vascular</option>
-                                    <option>Clínica médica</option>
-                                    <option>Coloproctologia</option>
-                                    <option>Dermatologia</option>
-                                    <option>Endocrinologia e metabologia</option>
-                                    <option>Endoscopia</option>
-                                    <option>Gastroenterologia</option>
-                                    <option>Genética médica</option>
-                                    <option>Geriatria</option>
-                                    <option>Ginecologia e obstetrícia</option>
-                                    <option>Hematologia e hemoterapia</option>
-                                    <option>Homeopatia</option>
-                                    <option>Infectologia</option>
-                                    <option>Mastologia</option>
-                                    <option>Medicina de emergência</option>
-                                    <option>Medicina de família e comunidade</option>
-                                    <option>Medicina do trabalho</option>
-                                    <option>Medicina de tráfego</option>
-                                    <option>Medicina esportiva</option>
-                                    <option>Medicina física e reabilitação</option>
-                                    <option>Medicina intensiva</option>
-                                    <option>Medicina legal e perícia médica</option>
-                                    <option>Medicina nuclear</option>
-                                    <option>Medicina preventiva e social</option>
-                                    <option>Nefrologia</option>
-                                    <option>Neurocirurgia</option>
-                                    <option>Neurologia</option>
-                                    <option>Nutrologia</option>
-                                    <option>Oftalmologia</option>
-                                    <option>Oncologia clínica</option>
-                                    <option>Ortopedia e traumatologia</option>
-                                    <option>Otorrinolaringologia</option>
-                                    <option>Patologia</option>
-                                    <option>Patologia clínica/medicina laboratorial</option>
-                                    <option>Pediatria</option>
-                                    <option>Pneumologia</option>
-                                    <option>Psiquiatria</option>
-                                    <option>Radiologia e diagnóstico de imagem</option>
-                                    <option>Radioterapia</option>
-                                    <option>Reumatologia</option>
-                                    <option>Urologia</option>
+                                    {{#each especialidades}}
+                                        <option value="{{nome}}">{{nome}}</option>
+                                    {{/each}}
                                 </select>
                                 <div class="invalid-feedback">
                                     Por favor selecione a especialidade.
@@ -289,8 +237,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 
         <script>
-            $(document).ready(function () {
+            /*$(document).ready(function () {
                 $('select').formSelect();
-            });
+            });*/
         </script>    
 </body>
