@@ -12,7 +12,7 @@ exports.cadastroPost = async (req, res) => {
   const pacienteExistente = await Paciente.findOne({cpf: req.body.cpf}).exec()
 
   if(pacienteExistente != null) {
-    return res.render('cadastro-pacientes', {mensagem: 'Usuário já existente', titulo: 'Cadastro de Pacientes', style: 'form-validation'})
+    res.render('erro', {title: 'Acesso Negado', style: 'form-validation'});
   }
 
   const pacienteNovo = new Paciente()
