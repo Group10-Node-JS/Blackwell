@@ -25,5 +25,7 @@ router.get('/deletarPaciente/:id', admController.deletarPaciente)
 
 router.get('/medico/:id', admController.perfilMedicoGet)
 
+router.get('/listarEspecialidade', admController.listarEspecialidade)
+
 
 module.exports = router

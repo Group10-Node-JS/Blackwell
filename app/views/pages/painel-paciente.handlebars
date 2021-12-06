@@ -8,7 +8,7 @@
 <!-- Selecione o médico -->
 <body>
     <main>
-        {{> header }}
+        {{> headerPaciente }}
         <section class="container-fluid">
             <div class="row d-flex justify-content-center gap-3">
                 <div class="col card-menu d-flex flex-wrap align-items-center p-0">
@@ -62,17 +62,30 @@
                             <img class="activator" src="/img/Rectangle 20.png">
                         </div>
                         <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4"> 
-                            Olá, {{{paciente}}}
+                            <span class="card-title activator grey-text text-darken-4">
+                            {{#with paci}}
+                            Olá, Sr(a). <strong>{{nome}}</strong>
+                           
+
                             <i class="material-icons right">contacts</i></span>
-                            <div class="convenio">{{{convenio}}}</div>
                         </div>
                         <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">{{{paciente}}}<i class="material-icons right">close</i></span>
+                            <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>
+                            {{nome}} <h6>{{genero}} </h6>  
+                            </span>    
                             <div>
-                                <h5>{{{convenio}}}</h5>
-                                <h5>{{{endereco}}}</h5>
-                                <h5>{{{telefone}}}</h5>
+                                <h5>
+                                    <strong>Endereço:</strong> {{enderecoCompleto}}
+                                </h5>
+
+                                <h5>
+                                    <strong>Data de Nascimento:</strong> {{dataNascimento}}
+                                </h5>
+                                <h5>
+                                    <strong>E-mail cadastrado:</strong>
+                                    {{email}}
+                                    {{/with}}
+                                </h5>
                             </div>
 
                         </div>
@@ -82,7 +95,7 @@
         </section>
         <section class="container p-0 mb-5">
             <div class="row">
-                <h3 class="titulo2 mb-5">Próximas Consultas</h3>
+                <h3 class="titulo2 mb-5">Conheça nossos Médicos</h3>
                 <div class="col s12 m12 l8">
                     <div class="table-responsive">
                         <table class="table table-hover mx-auto table-borderless">
@@ -109,54 +122,30 @@
                                           </label>
                                     </td>
                                     <td>
-                                        Exame do Pé
+                                        {{!-- {{#with agendamentos}}
+                                            {{exame}}
+                                        {{/with}} --}}
                                     </td>
                                     <td>
-                                        <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
-                                        Eleanor Pena
+                                        <span>
+                                        {{!-- {{#with medico}}
+                                            {{nome}}
+                                        {{/with}}     --}}
+                                        </span>   
                                     </td>
-                                    <td>                                          <span>Clínico Geral</span>
+                                    <td>                                      <span>Clínico Geral</span>
                                         <span>Cirurgia geral</span>
                                         <span>Pediatria</span>
                                     </td>
                                     <td>
-                                        18.05.2020
+                                        {{!-- {{#with agendamentos}}
+                                        {{dataConsulta}}
+                                        {{/with}} --}}
                                     </td> 
                                 </tr>
-                                <tr class="align-middle">
-                                    <td class="py-3">
-                                        <label>
-                                            <input type="checkbox"/>
-                                            <span> </span>
-                                          </label>
-                                    </td>
-                                    <td>
-                                        Exame do Pé
-                                    </td>
-                                    <td>
-                                        <span><img class="img-thumbnail" style="width:35px; height:35px; border: none; border-radius: 50%;" src="https://images.unsplash.com/photo-1619895862022-09114b41f16f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt=""></span>
-                                        Eleanor Pena
-                                    </td>
-                                    <td>                                          <span>Clínico Geral</span>
-                                        <span>Cirurgia geral</span>
-                                        <span>Pediatria</span>
-                                    </td>
-                                    <td>
-                                        18.05.2020
-                                    </td> 
-                                </tr>
-                                
                             </tbody>
                         </table>
-                        <form>
-                            <div class="botoes">
-                                <a class="waves-effect waves-light btn" type="button" disable>Desmarcar</a>
-                                <a type="button" class="waves-effect waves-light btn modal-trigger" href="/agendarConsulta">Agendar Exame</a>
-                            </div>
-                        </form>
                     </div>
-
-<!-- Modal -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 </body>

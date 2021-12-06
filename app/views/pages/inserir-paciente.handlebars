@@ -39,12 +39,46 @@
                         <div class="row">
 
                             <!-- Input Nome do Paciente -->
-                            <div class="col-lg-12 col-sm-12 p-0">
+                            <div class="col-lg-12 col-sm-12 p-0 mb-3">
                                 <label for="nomePaciente" class="form-label"> Nome completo:</label>
                                 <input type="text" class="form-control" id="nomePaciente"
                                     placeholder="Digite o seu nome completo" value="" name="nome" required>
                                 <div class="invalid-feedback">
                                     Campo nome é obrigatório.
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-sm-12 p-0">
+                                <label for="enderecoPaciente" class="form-label"> Endereço completo:</label>
+                                <input type="text" class="form-control" id="enderecoPaciente"
+                                    placeholder="Digite o seu endereço" value="" name="enderecoCompleto" required>
+                                <div class="invalid-feedback">
+                                    Campo nome é obrigatório.
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-2 p-0">
+                                <div class="col-lg-6 col-sm-12 p-0">
+                                    <label for="genero" class="form-label mt-3">Gênero</label>
+                                    <select class="form-select" id="genero" name="genero" required>
+                                        <option value="">Escolha ...</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Feminino">Feminino</option>
+                                        <option value="Outros">Outro</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor selecione gênero.
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12 p-0">
+                                    <label for="dataNascimento" class="form-label mt-3">Data de Nascimento:</label>
+                                    <input type="date" class="form-control" id="dataNascimento" value="" name="dataNascimento" required>
+                                    <div class="invalid-feedback">
+                                        Campo nome é obrigatório.
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor selecione gênero.
+                                    </div>
                                 </div>
                             </div>
 
@@ -60,21 +94,23 @@
                             </div>
 
                             <!-- Input Telefone do Paciente -->
-                            <div class="col-lg-6 col-sm-6 p-0">
-                                <label for="telefonePaciente" class="form-label mt-3">Telefone:</label>
-                                <input type="text" class="form-control" id="telefonePaciente"
-                                    placeholder="(DD)x xxxx-xxxx" name="telefone" required>
-                                <div class="invalid-feedback">
-                                    Campo telefone é obrigatório.
+                            <div class="d-flex gap-2 p-0">
+                                <div class="col-lg-6 col-sm-6 p-0">
+                                    <label for="telefonePaciente" class="form-label mt-3">Telefone:</label>
+                                    <input type="text" class="form-control" id="telefonePaciente"
+                                        placeholder="(xx) x xxxx-xxxx" name="telefone" required>
+                                    <div class="invalid-feedback">
+                                        Campo telefone é obrigatório.
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- Input CPF do Paciente -->
-                            <div class="col-lg-6 col-sm-6 p-0">
-                                <label for="cpfPaciente" class="form-label mt-3">CPF:</label>
-                                <input type="text" class="form-control" id="cpfPaciente" placeholder="Digite o seu CPF" name="cpf"
-                                    required>
-                                <div class="invalid-feedback">
-                                    Campo CPR é obriigatório.
+                                <!-- Input CPF do Paciente -->
+                                <div class="col-lg-6 col-sm-6 p-0">
+                                    <label for="cpfPaciente" class="form-label mt-3">CPF:</label>
+                                    <input type="text" class="form-control" id="cpfPaciente" placeholder="Digite o seu CPF" name="cpf"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Campo CPR é obriigatório.
+                                    </div>
                                 </div>
                             </div>
                             <!-- Input Usuário do Paciente -->
