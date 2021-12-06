@@ -8,18 +8,22 @@ router.all('*', Admin)
 router.get('/', admController.listagem)
 
 router.get('/cadastroMedico', admController.cadastroMedicoGet)
-
 router.post('/cadastroMedico', admController.cadastroMedicoPost)
 
-router.get('/cadastroPaciente', admController.cadastroPacienteGet)
 
+router.get('/cadastroPaciente', admController.cadastroPacienteGet)
 router.post('/cadastroPaciente', admController.cadastroPacientePost)
 
-router.get('/editarMedico/:id', admController.editarMedico)
+
+router.get('/editarMedico/:id', admController.editarMedicoGet)
+router.post('/editarMedico', admController.editarMedicoPost)
+
 
 router.get('/deletarMedico/:id', admController.deletarMedico)
 
-router.get('/editarPaciente/:id', admController.editarPaciente)
+router.get('/editarPaciente/:id', admController.editarPacienteGet)
+router.post('/editarPaciente', admController.editarPacientePost)
+
 
 router.get('/deletarPaciente/:id', admController.deletarPaciente)
 

@@ -20,10 +20,17 @@ exports.perfilMedicoGet = async (req, res) => {
   })
 }
 
-exports.editarMedico = async (req, res) => {
+exports.editarMedicoGet = async (req, res) => {
   const medicoEscolhido = await Medico.findById(req.params.id).exec()
 
-  return res.render('inserir-medico', {medicoEscolhido, titulo: 'Editar Médico', style: 'estilos'})
+  return res.render('atualizar-medico', {medicoEscolhido, titulo: 'Editar Médico', style: 'estilos'})
+}
+
+exports.editarMedicoPost = async (req, res) => {
+  const medicoAtualizado = req.body
+
+  await Medico.findByIdAndUpdate({_id:req.body.id}, medicoAtualizado)
+  return res.redirect('/admin/')
 }
 
 exports.deletarMedico = async (req, res) => {
@@ -32,10 +39,19 @@ exports.deletarMedico = async (req, res) => {
   return res.redirect('/admin/')
 }
 
-exports.editarPaciente = async (req, res) => {
+exports.editarPacienteGet = async (req, res) => {
   const pacienteEscolhido = await Paciente.findById(req.params.id).exec()
 
-  return res.render('inserir-paciente', {pacienteEscolhido, titulo:'Editar Paciente', style:'form-validation'})
+  return res.render('atualizar-paciente', {pacienteEscolhido, titulo:'Editar Paciente', style:'form-validation'})
+
+}
+exports.editarPacientePost = async (req, res) => {
+  const pacienteAtualizado = req.body
+
+  await Paciente.findByIdAndUpdate({_id:req.body.id}, pacienteAtualizado)
+
+  return res.redirect('/admin/')
+
 }
 
 exports.deletarPaciente = async (req, res) => {
@@ -72,10 +88,10 @@ exports.cadastroMedicoGet = (req, res) => {
 
 
 exports.cadastroMedicoPost = async (req, res) => {
-  const medicoExistente = await Medico.findOne({email: req.body.email, usuario: req.body.usuario, crm: req.body.crm}).exec()
+  const medicoExistente = await Medico.findOne({crm: req.body.crm}).exec()
 
   if(medicoExistente != null) {
-    return res.render('inserir-medico', {mensagem: 'Médico já existente', style: 'form-validation', titulo: 'Cadastro de Médicos'})
+    return res.render('inserir-medico', {style: 'form-validation', titulo: 'Cadastro de Médicos'})
   }
 
   const medicoNovo = new Medico()

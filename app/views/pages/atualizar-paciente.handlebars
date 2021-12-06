@@ -28,7 +28,7 @@
 
         <section class="container-fluid p-0">
             <div class="row text-center">
-                <h1 class=" title1 p-0">Inserir Paciente</h1>
+                <h1 class=" title1 p-0">Editar Paciente</h1>
             </div>
 
         </section>
@@ -36,21 +36,19 @@
             <div class="row">
                 <div class="col p-0">
                     
-                    <form class="needs-validation mx-auto" action="/admin/cadastroPaciente"  method="post" novalidate>
+                    <form class="needs-validation mx-auto" action="/admin/editarPaciente"  method="post" novalidate>
                         <div class="row">
 
                             <!-- Input Nome do Paciente -->
-
                             <div class="col-lg-12 col-sm-12 p-0">
-                                <label for="nomePaciente" class="form-label mt-3"> Nome completo:</label>
-                           
+                                <label for="nomePaciente" class="form-label"> Nome completo:</label>
+                                {{#with pacienteEscolhido}}
                                 <input type="text" class="form-control" id="nomePaciente"
-                                    placeholder="Digite o seu nome completo" value="" name="nome" required>
+                                    placeholder="Digite o seu nome completo" value="{{nome}}" name="nome" required>
                                 <div class="invalid-feedback">
                                     Campo nome é obrigatório.
                                 </div>
                             </div>
-
 
                             <!-- Input Endereço do Paciente -->
                             <div class="col-lg-12 col-sm-12 p-0">
@@ -68,7 +66,7 @@
                                 <label for="dataNascimento" class="form-label mt-3"> Data Nascimento: </label>
                                
                                 <input type="date" class="form-control" id="dataNascimento"
-                                    placeholder="Digite o seu nome completo" value="" name="dataNascimento" required>
+                                    placeholder="Digite o seu nome completo" value="{{dataNascimento}}" name="dataNascimento" required>
                                 <div class="invalid-feedback">
                                     Campo data nascimento é obrigatório.
                                 </div>
@@ -93,18 +91,17 @@
                                 <label for="emailPaciente" class="form-label mt-3">Email: <span
                                         class="text-muted"></span></label>
                                 <input type="email" class="form-control" id="emailPaciente"
-                                    placeholder="you@example.com" name="email" value="" required>
+                                    placeholder="you@example.com" name="email" value="{{email}}" required>
                                 <div class="invalid-feedback">
                                     Campo email é obrigatório.
                                 </div>
                             </div>
 
                             <!-- Input Telefone do Paciente -->
-
                             <div class="col-lg-6 col-sm-6 p-0">
                                 <label for="telefonePaciente" class="form-label mt-3">Telefone:</label>
                                 <input type="text" class="form-control" id="telefonePaciente"
-                                    placeholder="(DD)x xxxx-xxxx" name="telefone" value="" required>
+                                    placeholder="(DD)x xxxx-xxxx" name="telefone" value="{{telefone}}" required>
                                 <div class="invalid-feedback">
                                     Campo telefone é obrigatório.
                                 </div>
@@ -112,7 +109,7 @@
                             <!-- Input CPF do Paciente -->
                             <div class="col-lg-6 col-sm-6 p-0">
                                 <label for="cpfPaciente" class="form-label mt-3">CPF:</label>
-                                <input type="text" class="form-control" id="cpfPaciente" placeholder="Digite o seu CPF" name="cpf" value=""
+                                <input type="text" class="form-control" id="cpfPaciente" placeholder="Digite o seu CPF" name="cpf" value="{{cpf}}"
                                     required>
                                 <div class="invalid-feedback">
                                     Campo CPR é obriigatório.
@@ -122,7 +119,7 @@
                             <div class="col-lg-12 col-sm-12 p-0">
                                 <label for="usuarioPaciente" class="form-label mt-3">Usuário :</label>
                                 <input type="text" class="form-control" id="usuarioPaciente"
-                                    placeholder="Digite o seu usuario" name="usuario" value="" required>
+                                    placeholder="Digite o seu usuario" name="usuario" value="{{usuario}}" required>
                                 <div class="invalid-feedback">
                                     Campo usuário é obrigatório.
                                 </div>
@@ -136,15 +133,17 @@
                                     Campo senha é obrigatório.
                                 </div>                                                        
                             </div>
-                            
+                            <div class="col-lg-12 col-sm-12 p-0 mt-3">
+                                <input type="hidden"  id="idPaciente"  name="id" value="{{_id}}">
+                            </div>
                         </div>
                         <!-- Botões Limpar e Enviar-->
                         <div class="d-flex justify-content-center mb-2 mt-3">
                             <button class="btn btn-primary btn-mx-2 btnLimpar " type="reset">Limpar</button>
-                            <button class=" btn btn-success mx-2 btnEnviar" type="submit">Adicionar </button>
+                            <button class=" btn btn-success mx-2 btnEnviar" type="submit">Atualizar</button>
                         </div>
                     </form>
-                    
+                    {{/with}}
                 </div>
             </div>
         </section>
