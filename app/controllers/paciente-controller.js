@@ -2,10 +2,16 @@ const Paciente = require('../models/paciente')
 const Medico = require('../models/medico')
 const Especialidade = require('../models/especialidades')
 
+
+///////////////////////////////////////////////////////////////
+//////////////////MÉTODOS PARA CADASTRO PACIENTE///////////////
+///////////////////////////////////////////////////////////////
+
+// ---------------Cadastrar paciente GET------------------------------
 exports.cadastroGet = (req, res) => {
   res.render('cadastro-pacientes', {titulo: 'Cadastro de Pacientes', style: 'form-validation'});
 }
-
+// ---------------Cadastrar paciente POST------------------------------
 exports.cadastroPost = async (req, res) => {
   const dataAtual = new Date()
 
@@ -27,7 +33,7 @@ exports.cadastroPost = async (req, res) => {
 
   return res.redirect(`/perfil/${pacienteNovo._id}`)
 }
-
+// ---------------Perfil do Paciente GET------------------------------
 exports.perfilGet = async (req, res) => {
   const id = req.params.id
   const paci = await Paciente.findById(id).exec()

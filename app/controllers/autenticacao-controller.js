@@ -1,10 +1,15 @@
 const Adm = require('../models/adm');
 const Paciente = require('../models/paciente');
 
+///////////////////////////////////////////////////////////////
+//////////////////MÉTODOS PARA LOGIN///////////////////////////
+///////////////////////////////////////////////////////////////
+
+// ---------------------LOGIN GET------------------------------
 exports.loginGet = (req, res) => {
   res.render('login', {titulo: 'Blackwell', style: 'login'})
 }
-
+// ---------------------LOGIN POST------------------------------
 exports.loginPost = async (req, res) => {
   const paciente = await Paciente.findOne({usuario: req.body.usuario, senha: req.body.senha}).exec();
   
@@ -24,7 +29,7 @@ exports.loginPost = async (req, res) => {
   
   return res.render('login', {mensagem: 'Usuário não encontrado', titulo: 'Blackwell', style: 'login'})
 }
-
+// ---------------------LOGOUT------------------------------
 exports.sair = async (req, res) => {
   global.tipoUsuario = ""
 

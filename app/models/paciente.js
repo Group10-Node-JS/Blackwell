@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-// Usamos o model para nomear a collection e inserir os objetos dela
+// Usamos o model para nomear a collection PACIENTES e inserir os objetos dela
 const Paciente = mongoose.model('paciente', {
     nome: String,
     dataNascimento: String,
